@@ -1,0 +1,45 @@
+:root {
+    --color-dark: #240505;
+    --color-red: #F14848;
+    --color-light: #eee;
+    --color-light-30: #36363660;
+    --color-primary: #6662E2;
+    --color-white: #fff;
+    --font-logo: "Hachi Maru Pop", cursive;
+    --font-primary: 'Outfit', serif;
+    --header-height: 100px;
+}
+
+.tlight {
+    color: var(--color-light);
+}
+
+.bdark {
+    background-color: var(--color-dark);
+}
+
+.bprimary {
+    background-color: var(--color-primary);
+}
+
+.tdanger {
+    color: var(--color-red);
+}
+
+.blight {
+    background-color: var(--color-light-30);
+}
+
+.tbold {
+    font-weight: 600;
+}
+
+.tnormal {
+    font-weight: 300;
+}
+
+@media (max-width:560px) {
+    :root{
+        --header-height: 75px;
+    }
+}

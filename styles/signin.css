@@ -1,0 +1,32 @@
+.signin-form {
+    max-width: 380px;
+    width: 100%;
+}
+
+.field {
+    border-bottom: 2px solid var(--color-light);
+}
+
+#submit i{
+    display: none;
+    animation: spin 1s infinite linear;
+}
+#submit.working span{
+    display: none;
+}
+#submit.working i{
+    display: inline-block;
+}
+#submit:disabled{
+    background: var(--color-dark);
+    opacity: .5;
+}
+
+@keyframes spin {
+    0%{
+        transform: rotate(0deg);
+    }
+    100%{
+        transform: rotate(360deg);
+    }
+}

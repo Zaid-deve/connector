@@ -1,0 +1,36 @@
+/* 
+===============================
+PAGE ALERT
+===============================
+*/
+
+.page-alert {
+    top: var(--header-height);
+    right: 10px;
+    z-index: 1024 !important;
+    box-shadow: 0 0 10px #eee;
+    transform: scale(0);
+    transform-origin: right top;
+    transition: all .2s ease;
+}
+
+.page-alert.show{
+    transform: scale(1);
+}
+.page-alert .alert-close {
+    height: 35px;
+    width: 35px;
+    background: var(--color-light);
+    border-radius: 50%;
+}
+
+@media (max-width:786px) {
+    .page-alert {
+        top: 0;
+        right: 0;
+        width: 100%;
+        box-shadow: 0;
+        height: var(--header-height);
+        transform-origin: top;
+    }
+}

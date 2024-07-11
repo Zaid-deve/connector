@@ -1,0 +1,44 @@
+/* fonts */
+@import url(https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap);
+@import url(https://fonts.googleapis.com/css2?family=Hachi+Maru+Pop&family=Outfit:wght@100..900&display=swap);
+
+*{
+    font-family: var(--font-primary);
+    color: var(--color-dark);
+    user-select: none !important;
+}
+
+*::-webkit-scrollbar{
+    width: 10px;
+}
+
+*::-webkit-scrollbar-thumb{
+    background:var(--color-dark);
+    border-radius: 8px;
+}
+
+.form-control {
+    box-shadow: none !important;
+    border: none;
+}
+
+img{
+    display: block;
+}
+
+.img-cover {
+    object-fit: cover;
+}
+
+.img-contain{
+    object-fit: contain;
+}
+
+header {
+    z-index: 4 !important;
+}
+
+.btn {
+    font-weight: 600;
+    border: none;
+}

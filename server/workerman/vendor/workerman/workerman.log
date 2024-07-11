@@ -1,0 +1,89 @@
+2024-06-29 18:00:11 pid:1 Exception: You can't send(array) to client, you need to convert it to a string.  in C:\xampp\htdocs\connector\server\workerman\vendor\workerman\workerman\Protocols\Websocket.php:243
+Stack trace:
+#0 C:\xampp\htdocs\connector\server\workerman\vendor\workerman\workerman\Connection\TcpConnection.php(329): Workerman\Protocols\Websocket::encode(Array, Object(Workerman\Connection\TcpConnection))
+#1 C:\xampp\htdocs\connector\server\component.php(51): Workerman\Connection\TcpConnection->send(Array)
+#2 C:\xampp\htdocs\connector\server\workerman\vendor\workerman\workerman\Connection\TcpConnection.php(646): {closure}(Object(Workerman\Connection\TcpConnection), Array)
+#3 C:\xampp\htdocs\connector\server\workerman\vendor\workerman\workerman\Events\Select.php(311): Workerman\Connection\TcpConnection->baseRead(Resource id #32)
+#4 C:\xampp\htdocs\connector\server\workerman\vendor\workerman\workerman\Worker.php(1488): Workerman\Events\Select->loop()
+#5 C:\xampp\htdocs\connector\server\workerman\vendor\workerman\workerman\Worker.php(1405): Workerman\Worker::forkWorkersForWindows()
+#6 C:\xampp\htdocs\connector\server\workerman\vendor\workerman\workerman\Worker.php(560): Workerman\Worker::forkWorkers()
+#7 C:\xampp\htdocs\connector\server\server.php(32): Workerman\Worker::runAll()
+#8 {main}
+2024-06-29 18:09:42 pid:1 Worker process terminated
+2024-06-29 18:10:33 pid:1 Worker process terminated
+2024-06-29 18:18:03 pid:1 Exception: You can't send(array) to client, you need to convert it to a string.  in C:\xampp\htdocs\connector\server\workerman\vendor\workerman\workerman\Protocols\Websocket.php:243
+Stack trace:
+#0 C:\xampp\htdocs\connector\server\workerman\vendor\workerman\workerman\Connection\TcpConnection.php(329): Workerman\Protocols\Websocket::encode(Array, Object(Workerman\Connection\TcpConnection))
+#1 C:\xampp\htdocs\connector\server\component.php(38): Workerman\Connection\TcpConnection->send(Array)
+#2 C:\xampp\htdocs\connector\server\workerman\vendor\workerman\workerman\Connection\TcpConnection.php(646): {closure}(Object(Workerman\Connection\TcpConnection), '{"type":"hangup...')
+#3 C:\xampp\htdocs\connector\server\workerman\vendor\workerman\workerman\Events\Select.php(311): Workerman\Connection\TcpConnection->baseRead(Resource id #35)
+#4 C:\xampp\htdocs\connector\server\workerman\vendor\workerman\workerman\Worker.php(1488): Workerman\Events\Select->loop()
+#5 C:\xampp\htdocs\connector\server\workerman\vendor\workerman\workerman\Worker.php(1405): Workerman\Worker::forkWorkersForWindows()
+#6 C:\xampp\htdocs\connector\server\workerman\vendor\workerman\workerman\Worker.php(560): Workerman\Worker::forkWorkers()
+#7 C:\xampp\htdocs\connector\server\server.php(32): Workerman\Worker::runAll()
+#8 {main}
+2024-06-30 06:40:43 pid:1 Worker process terminated with ERROR: E_ERROR "Uncaught Exception: The requested address is not valid in its context in C:\xampp\htdocs\connector\server\workerman\vendor\workerman\workerman\Worker.php:2365
+Stack trace:
+#0 C:\xampp\htdocs\connector\server\workerman\vendor\workerman\workerman\Worker.php(1486): Workerman\Worker->listen()
+#1 C:\xampp\htdocs\connector\server\workerman\vendor\workerman\workerman\Worker.php(1405): Workerman\Worker::forkWorkersForWindows()
+#2 C:\xampp\htdocs\connector\server\workerman\vendor\workerman\workerman\Worker.php(560): Workerman\Worker::forkWorkers()
+#3 C:\xampp\htdocs\connector\server\server.php(32): Workerman\Worker::runAll()
+#4 {main}
+  thrown in C:\xampp\htdocs\connector\server\workerman\vendor\workerman\workerman\Worker.php on line 2365"
+2024-06-30 11:29:33 pid:1 Worker process terminated with ERROR: E_ERROR "Uncaught Exception: The requested address is not valid in its context in C:\xampp\htdocs\connector\server\workerman\vendor\workerman\workerman\Worker.php:2365
+Stack trace:
+#0 C:\xampp\htdocs\connector\server\workerman\vendor\workerman\workerman\Worker.php(1486): Workerman\Worker->listen()
+#1 C:\xampp\htdocs\connector\server\workerman\vendor\workerman\workerman\Worker.php(1405): Workerman\Worker::forkWorkersForWindows()
+#2 C:\xampp\htdocs\connector\server\workerman\vendor\workerman\workerman\Worker.php(560): Workerman\Worker::forkWorkers()
+#3 C:\xampp\htdocs\connector\server\server.php(32): Workerman\Worker::runAll()
+#4 {main}
+  thrown in C:\xampp\htdocs\connector\server\workerman\vendor\workerman\workerman\Worker.php on line 2365"
+2024-07-06 21:33:57 pid:1 Error: Cannot use object of type Workerman\Connection\TcpConnection as array in C:\xampp\htdocs\connector\server\component.php:85
+Stack trace:
+#0 C:\xampp\htdocs\connector\server\workerman\vendor\workerman\workerman\Connection\TcpConnection.php(646): {closure}(Object(Workerman\Connection\TcpConnection), '{"type":"candid...')
+#1 C:\xampp\htdocs\connector\server\workerman\vendor\workerman\workerman\Events\Select.php(311): Workerman\Connection\TcpConnection->baseRead(Resource id #32)
+#2 C:\xampp\htdocs\connector\server\workerman\vendor\workerman\workerman\Worker.php(1488): Workerman\Events\Select->loop()
+#3 C:\xampp\htdocs\connector\server\workerman\vendor\workerman\workerman\Worker.php(1405): Workerman\Worker::forkWorkersForWindows()
+#4 C:\xampp\htdocs\connector\server\workerman\vendor\workerman\workerman\Worker.php(560): Workerman\Worker::forkWorkers()
+#5 C:\xampp\htdocs\connector\server\server.php(43): Workerman\Worker::runAll()
+#6 {main}
+2024-07-06 21:35:18 pid:1 Error: Cannot use object of type Workerman\Connection\TcpConnection as array in C:\xampp\htdocs\connector\server\component.php:85
+Stack trace:
+#0 C:\xampp\htdocs\connector\server\workerman\vendor\workerman\workerman\Connection\TcpConnection.php(646): {closure}(Object(Workerman\Connection\TcpConnection), '{"type":"candid...')
+#1 C:\xampp\htdocs\connector\server\workerman\vendor\workerman\workerman\Events\Select.php(311): Workerman\Connection\TcpConnection->baseRead(Resource id #26)
+#2 C:\xampp\htdocs\connector\server\workerman\vendor\workerman\workerman\Worker.php(1488): Workerman\Events\Select->loop()
+#3 C:\xampp\htdocs\connector\server\workerman\vendor\workerman\workerman\Worker.php(1405): Workerman\Worker::forkWorkersForWindows()
+#4 C:\xampp\htdocs\connector\server\workerman\vendor\workerman\workerman\Worker.php(560): Workerman\Worker::forkWorkers()
+#5 C:\xampp\htdocs\connector\server\server.php(43): Workerman\Worker::runAll()
+#6 {main}
+2024-07-06 21:37:04 pid:1 Error: Cannot use object of type Workerman\Connection\TcpConnection as array in C:\xampp\htdocs\connector\server\component.php:85
+Stack trace:
+#0 C:\xampp\htdocs\connector\server\workerman\vendor\workerman\workerman\Connection\TcpConnection.php(646): {closure}(Object(Workerman\Connection\TcpConnection), '{"type":"candid...')
+#1 C:\xampp\htdocs\connector\server\workerman\vendor\workerman\workerman\Events\Select.php(311): Workerman\Connection\TcpConnection->baseRead(Resource id #28)
+#2 C:\xampp\htdocs\connector\server\workerman\vendor\workerman\workerman\Worker.php(1488): Workerman\Events\Select->loop()
+#3 C:\xampp\htdocs\connector\server\workerman\vendor\workerman\workerman\Worker.php(1405): Workerman\Worker::forkWorkersForWindows()
+#4 C:\xampp\htdocs\connector\server\workerman\vendor\workerman\workerman\Worker.php(560): Workerman\Worker::forkWorkers()
+#5 C:\xampp\htdocs\connector\server\server.php(43): Workerman\Worker::runAll()
+#6 {main}
+2024-07-07 19:45:38 pid:1 TypeError: array_key_exists(): Argument #2 ($array) must be of type array, null given in C:\xampp\htdocs\connector\server\component.php:38
+Stack trace:
+#0 C:\xampp\htdocs\connector\server\component.php(151): remove_candidates('Y2xpZW50NQ==')
+#1 C:\xampp\htdocs\connector\server\workerman\vendor\workerman\workerman\Connection\TcpConnection.php(928): {closure}(Object(Workerman\Connection\TcpConnection))
+#2 C:\xampp\htdocs\connector\server\workerman\vendor\workerman\workerman\Connection\TcpConnection.php(706): Workerman\Connection\TcpConnection->destroy()
+#3 C:\xampp\htdocs\connector\server\workerman\vendor\workerman\workerman\Events\Select.php(321): Workerman\Connection\TcpConnection->baseWrite(Resource id #32)
+#4 C:\xampp\htdocs\connector\server\workerman\vendor\workerman\workerman\Worker.php(1488): Workerman\Events\Select->loop()
+#5 C:\xampp\htdocs\connector\server\workerman\vendor\workerman\workerman\Worker.php(1405): Workerman\Worker::forkWorkersForWindows()
+#6 C:\xampp\htdocs\connector\server\workerman\vendor\workerman\workerman\Worker.php(560): Workerman\Worker::forkWorkers()
+#7 C:\xampp\htdocs\connector\server\server.php(42): Workerman\Worker::runAll()
+#8 {main}
+2024-07-08 10:51:48 pid:1 Exception: You can't send(array) to client, you need to convert it to a string.  in C:\xampp\htdocs\connector\server\workerman\vendor\workerman\workerman\Protocols\Websocket.php:243
+Stack trace:
+#0 C:\xampp\htdocs\connector\server\workerman\vendor\workerman\workerman\Connection\TcpConnection.php(329): Workerman\Protocols\Websocket::encode(Array, Object(Workerman\Connection\TcpConnection))
+#1 C:\xampp\htdocs\connector\server\component.php(104): Workerman\Connection\TcpConnection->send(Array)
+#2 C:\xampp\htdocs\connector\server\workerman\vendor\workerman\workerman\Connection\TcpConnection.php(646): {closure}(Object(Workerman\Connection\TcpConnection), '{"type":"offer"...')
+#3 C:\xampp\htdocs\connector\server\workerman\vendor\workerman\workerman\Events\Select.php(311): Workerman\Connection\TcpConnection->baseRead(Resource id #55)
+#4 C:\xampp\htdocs\connector\server\workerman\vendor\workerman\workerman\Worker.php(1488): Workerman\Events\Select->loop()
+#5 C:\xampp\htdocs\connector\server\workerman\vendor\workerman\workerman\Worker.php(1405): Workerman\Worker::forkWorkersForWindows()
+#6 C:\xampp\htdocs\connector\server\workerman\vendor\workerman\workerman\Worker.php(560): Workerman\Worker::forkWorkers()
+#7 C:\xampp\htdocs\connector\server\server.php(42): Workerman\Worker::runAll()
+#8 {main}

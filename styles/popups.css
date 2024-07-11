@@ -1,0 +1,91 @@
+/* 
+=================================
+POPUP WINDOWS
+================================
+*/
+
+.popup-container
+{
+    z-index: 999;
+    background: var(--color-light-30);
+}
+
+.popup-container .popup{
+    margin: auto;
+    max-width: 420px;
+    width: 100%;
+    border-radius: 12px;
+    background: #fff;
+    overflow: hidden;
+}
+
+.popup .popup-header {
+    padding: 16px 20px;
+    line-height: 20px;
+    background: rgba(0,0,0,0.04);
+}
+
+.popup-header h3 {
+    margin: 0;
+    font-weight: 500;
+}
+
+.popup-header small{
+    font-weight: 300;
+    opacity: .7;
+}
+
+.popup .popup-body{
+    padding: 16px 20px;
+}
+
+.popup .field{
+    border: 1px solid #c7c7c7;
+    border-radius: 4px;
+}
+
+.field i{
+    padding-inline: 14px 0;
+    font-size: 1.1em;
+}
+
+.field .form-control{
+    padding-block:8px;
+}
+
+.field-text{
+    font-weight: 300;
+    line-height: 16px;
+}
+
+.__user__profile__err {
+    line-height: 14px;
+    font-weight: 300;
+}
+
+.popup-accept-req-body #__btn__reject__req {
+    border: 1px solid;
+    color: (--color-red);
+    font-weight: 300;
+}
+
+.popup-header-icon{
+    height: 50px;
+    width: 50px;
+    line-height: 50px;
+    text-align: center;
+    background: var(--color-dark);
+    margin: auto;
+    border-radius:150px;
+}
+
+.popup-header-icon i{
+    color: #fff;
+    font-weight: 900;
+    font-size: 1.6em;
+}
+.popup-inc-body #__btn__reject__call{
+    color: var(--color-red) !important;
+    border: 1px solid !important;
+    font-weight: 300;
+}

@@ -1,0 +1,76 @@
+body{
+    overflow: hidden;
+}
+
+.float-win{
+    max-width: 420px;
+    width: 100%;
+    z-index: 4;
+}
+
+.float-info-win {
+    transform: translateX(-50%);
+    bottom: 75px;
+}
+.user-img {
+    height: 42px;
+    width: 42px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.user-info{
+    line-height: 17px;
+}
+
+.btn-decline-call {
+    background: var(--color-red);
+    height: 60px;
+    width: 60px;
+}
+
+
+.btn-decline-call i {
+    transform: rotate(135deg);
+    color: var(--color-light);
+}
+
+.cbtns .btn
+{
+    height: 45px;
+    width: 45px;
+}
+
+.local-peer {
+    height: 140px;
+    width: 200px;
+}
+
+.banner {
+    height: 150px;
+    width: 100%;
+    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.5)), url(../images/a77176579c9d4ab7f95fa20ac24d3100.gif) no-repeat center;
+    background-size: cover;
+}
+.banner h5 {
+    line-height: 150px;
+    font-weight: 900;
+    letter-spacing: .7px;
+}
+
+.call-end-win .float-win {
+    overflow: hidden;
+}
+.call-end-win {
+    z-index: 999;
+}
+
+#savebtn{
+    font-weight: 600;
+    color: var(--color-primary);
+    font-size: .9em;
+}
+
+#savebtn i{
+    color: var(--color-primary);
+}
