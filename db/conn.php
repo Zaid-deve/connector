@@ -1,6 +1,6 @@
 <?php
 
-$db_server = 'localhost';
+$db_server = "localhost";
 $db_name = 'connector';
 $db_user = 'root';
 $db_pass = '';

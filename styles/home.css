@@ -1,0 +1,13 @@
+.hleft img {
+    max-height: 420px;
+}
+
+.htext{
+    width: 390px;
+}
+
+.htext .btn{
+    letter-spacing: .1rem;
+    background-color: var(--color-dark);
+}
+

@@ -1,81 +1,84 @@
 $(function () {
-    const emailField = $('#email'),
-        passField = $('#pass'),
-        emailErr = $('.email-err'),
-        passErr = $('.pass-err'),
-        submitButton = $('#submit')
+    const email = $("#__email"),
+        pass = $("#__pass"),
+        emailErr = email.next(),
+        passErr = pass.next(),
+        submitBtn = $("#submit");
 
-    let emailChecked = false;
-
-    function validateEmail() {
-        const isValidEmail = isEmail(emailField.val());
-        if (isValidEmail || !emailField.val()) {
-            emailErr.text('');
-        } else {
-            emailErr.text('Please enter a valid email address.');
-        }
-
-        return isValidEmail;
+    let isEmailVerified = false;
+    function isPassValid(val) {
+        return val.length > 8 && val.length < 55;
     }
 
-    function validatePassword() {
-        const pass = passField.val(),
-            isPassValid = pass.length >= 8 && pass.length <= 255
-
-        if (isPassValid) {
-            passErr.text('');
-        } else {
-            passErr.text('Password should be 8 to 255 characters long.');
-        }
-
-        return isPassValid;
-    }
-
-    emailField.on('input', function () {
-        submitButton.prop('disabled', !validateEmail())
-    });
-
-    passField.on('input', function () {
-        submitButton.prop('disabled', !validatePassword())
-    });
-
-    submitButton.click(function () {
-        if (!emailChecked) {
-            if (validateEmail()) {
-                emailChecked = true
-                $(".field-pass").removeClass('d-none')
-                $(".field-email").addClass('d-none');
-                pass.focus()
-            }
-        } else {
-            if (validatePassword()) {
-                submitButton.hide();
-                let email = emailField.val().trim(),
-                    pass = passField.val().trim();
-
-
-                $.post("../php/handleSignin.php", { email, pass }, function (resp) {
-                    const r = JSON.parse(resp);
-                    if (r.Success) {
-                        location.replace("../app/chat.php");
-                        return
-                    }
-
-                    if (r.ErrType) {
-                        if (r.ErrType == "Email") {
-                            emailChecked = false
-                            emailField.val('');
-                            emailErr.text(r.Err)
-                            $(".field-pass").addClass('d-none')
-                            $(".field-email").removeClass('d-none');
-                        } else {
-                            passErr.text(r.Err);
-                        }
-                    } else {
-                        throwErr(r.Err, true);
-                    }
-                })
-            }
-        }
+    email.on("input", function () {
+        submitBtn[0].disabled = !isEmail(email.val());
     })
-});
+
+    pass.on("input", function () {
+        submitBtn[0].disabled = !isPassValid(pass.val())
+    })
+
+    $("#signinform").on("submit", function (e) {
+        e.preventDefault()
+        emailErr.text('')
+        passErr.text('')
+
+        const emailValid = isEmail(email.val()),
+            passValid = isPassValid(pass.val());
+
+        if (!isEmailVerified) {
+            if (emailValid) {
+                isEmailVerified = true;
+                email.parent().addClass('d-none')
+                pass.parent().removeClass('d-none').hide().fadeIn(350);
+            } else {
+                emailErr.text('Please enter a valid email address');
+            }
+            return;
+        } else {
+            if (!passValid) {
+                passErr.text('Password Is Not Valid')
+                return;
+            }
+        }
+
+        sendSignReq(`${ORIGIN}/php/handleSignin.php`, { email: email.val(), pass: pass.val() });
+    })
+
+    function sendSignReq(authUrl, data) {
+        $(".field .form-control")[0].readonly = false
+        submitBtn.disabled = false;
+
+        $.ajax({
+            url: authUrl,
+            method: 'POST',
+            data: data,
+            success: function (resp) {
+                const r = JSON.parse(resp);
+                if (r.Success) {
+                    location.replace(`${ORIGIN}/app/chat.php`);
+                }
+
+                if (r.Err) {
+                    if (r.ErrType == 'Email') {
+                        emailErr.text(r.Err)
+                    }
+                    else if (r.ErrType == 'Password') {
+                        passErr.text(r.Err)
+                    } else {
+                        throwErr(r.Err)
+                    }
+                } else {
+                    throwErr("Something Went Wrong !");
+                }
+            },
+            error: function (status) {
+                throwErr(status);
+            },
+            complete: function () {
+                $(".field .form-control")[0].readonly = false
+                submitBtn.disabled = false;
+            }
+        })
+    }
+})

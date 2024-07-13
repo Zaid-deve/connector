@@ -1,20 +1,20 @@
 <?php
 
-require_once "../php/functions.php";
-session_start();
-if (getUserId()) {
+require_once "../php/config.php";
+require_once "user.php";
+$user = new User();
+if ($user->isUserLogedIn()) {
     header("Location:app/chat.php");
     die();
 }
 
 // page
 $pagename = 'Sign In';
-require_once "../php/config.php";
-require_once $root . "includes/head.php";
+require_once "../includes/head.php";
 
 ?>
 
-<link rel="stylesheet" href="<?php echo $baseurl ?>styles/signin.css">
+<link rel="stylesheet" href="../styles/signin.css">
 </head>
 
 <body>
@@ -23,30 +23,24 @@ require_once $root . "includes/head.php";
     <?php require_once "../includes/header.php" ?>
     <?php require_once "../includes/alert.php" ?>
     <main>
-        <div class="container-fluid h-100 d-flex">
-            <div class="m-auto">
-                <form class="signin-form" onsubmit="return false">
-                    <h1 class="m-0">Signin To Account</h1>
-                    <p class="text-muted">connector ensures your privacy, your data is safe</p>
+        <div class="container vh-100 d-flex">
+            <div class="d-flex align-items-center justufy-content-center m-auto">
+                <form action="#" id="signinform" autocomplete="off" autocapitalize="off">
+                    <h1 class="text-secondary mb-0">Sign In</h1>
+                    <small class="text-muted">We Keep Your Data Private And Encrypted</small>
+                    <hr>
                     <div class="mt-4">
-                        <div class="field-email">
-                            <div class="field d-flex align-items-center">
-                                <i class="fa-regular fa-envelope"></i>
-                                <input type="text" placeholder="Enter Your Email Address" name="email" id="email" class="form-control border-0" autofocus>
-                            </div>
-                            <div class="tnormal tdanger email-err"></div>
+                        <div class="field field-email">
+                            <label for="__email">Email Address</label>
+                            <input type="text" class="form-control" id="__email" placeholder="example@mail.com">
+                            <div class="err text-danger"></div>
                         </div>
-                        <div class="field-pass mt-2 d-none">
-                            <div class="field d-flex align-items-center">
-                                <i class="fa-solid fa-key"></i>
-                                <input type="password" placeholder="Enter Your Password" name="pass" id="pass" class="form-control border-0">
-                            </div>
-                            <div class="tnormal tdanger pass-err"></div>
+                        <div class="field field-pass mt-3 d-none">
+                            <label for="__pass">Account Password</label>
+                            <input type="password" class="form-control" id="__pass" placeholder="Enter password">
+                            <div class="err text-danger"></div>
                         </div>
-                        <button class="btn bdark rounded-5 px-4 py-2 mt-3 d-block mx-auto mt-4 border-0" disabled type="submit" id="submit">
-                            <span class="tlight">CONTINUE</span>
-                            <i class="fa-solid fa-spinner tlight"></i>
-                        </button>
+                        <button class="btn w-100 py-2 mt-4 text-light fw-bold" type="submit" id="submit" disabled>Submit</button>
                     </div>
                 </form>
             </div>

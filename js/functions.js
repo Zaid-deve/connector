@@ -1,3 +1,7 @@
+const HOST = location.host,
+      ORIGIN = location.origin + '/connector',
+      SCHEME = location.protocol
+
 const isEmail = (val) => {
     return /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(val);
 }

@@ -1,8 +1,9 @@
 <?php
 
 
-session_start();
-require "functions.php";
+require_once "config.php";
+require_once "../user/user.php";
+$user = new User();
 
 $response = [
     'Success' => false,
@@ -10,7 +11,7 @@ $response = [
     'Err' => ''
 ];
 
-if (getUserId()) {
+if ($user->isUserLogedIn()) {
     $response['Err'] = "User Already Loged In !";
     die(json_encode($response));
 }
@@ -27,9 +28,9 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $response['ErrType'] = 'Email';
         $response['Err'] = "$email Is Not A Valid Email Address";
-    } else if (strlen($pass) < 8 || strlen($pass) > 255) {
+    } else if (strlen($pass) < 8 || strlen($pass) > 55) {
         $response['ErrType'] = 'Password';
-        $response['Err'] = "Password Should Be 8 to 255 Characters Long !";
+        $response['Err'] = "Password Should Be 8 to 55 Characters Long !";
     } else {
         // encode
         $enc_email = base64_encode($email);
@@ -45,12 +46,11 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             if (!$stmt->rowCount()) {
                 throw new Exception('NO_USER_FOUND');
             } else {
-
                 if ($user['user_pass'] === $enc_pass) {
                     $response['Success'] = true;
-                    $_SESSION['user_id'] = $user['user_id'];
+                    $user->setUserId($user['user_id']);
                 } else {
-                    $response['ErrType'] = "Pass";
+                    $response['ErrType'] = "Password";
                     $response['Err'] = "Password Does Not Match !";
                 }
             }

@@ -1,30 +1,13 @@
 <?php
 
-session_start();
 require_once "../php/config.php";
 require_once "../php/functions.php";
-
-$uid = getUserId();
-if (!$uid) {
-    // user is not loged in
-    header("Location:../user/signin.php");
-    die();
-}
-
-// get user public id
 require_once "../db/conn.php";
-$stmt = $conn->prepare("SELECT user_name FROM users WHERE user_id = ?");
-$stmt->execute([$uid]);
+require_once "../user/user.php";
+$user = new User(true);
+$uid = $user->getUserId();
 
-// fetch
-$userId = "";
-if ($stmt && $stmt->rowCount()) {
-    $data = $stmt->fetch(PDO::FETCH_ASSOC);
-    if ($data['user_name']) {
-        $userId = $data['user_name'];
-        $userIdDec = base64_decode($userId);
-    }
-}
+
 
 // includes head
 $pagename = "Home";
@@ -40,8 +23,25 @@ require_once $root . "includes/head.php";
 <body>
 
     <!-- BODY -->
-    <?php include "{$root}/includes/header.php"; ?>
-    <?php include "{$root}/includes/alert.php"; ?>
+    <?php
+
+    // get user public id
+    $userId = $userName = $userProfile = '';
+    if ($uid) {
+        $data = $user->getUser($conn, $uid, ['user_name', 'user_profile']);
+        if ($data) {
+            $userId = $data['user_name'];
+            $userName = base64_decode($userId);
+            $userProfile = $user->getProfileUri($data['user_profile']);
+        }
+    }
+
+
+    include "{$root}/includes/header.php";
+    include "{$root}/includes/alert.php";
+
+
+    ?>
 
     <!-- 
     =========== MAIN CONTENT ===========

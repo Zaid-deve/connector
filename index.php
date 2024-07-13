@@ -1,41 +1,48 @@
 <?php
 
-require_once "php/functions.php";
-session_start();
-if (getUserId()) {
-    header("Location:app/chat.php");
-    die();
+require_once "php/config.php";
+require_once "user/user.php";
+$user = new User();
+
+if ($user->isUserLogedIn()) {
+    $uid = $user->getUserId();
 }
 
-$pagename = 'Home';
-require_once "php/config.php";
-require_once "includes/head.php";
 
+require_once "./includes/head.php";
 ?>
-
+<link rel="stylesheet" href="styles/config.css">
+<link rel="stylesheet" href="styles/header.css">
+<link rel="stylesheet" href="styles/home.css">
 </head>
 
 <body>
 
-    <!-- BODY -->
-    <?php include "{$root}/includes/header.php"; ?>
-    <?php include "{$root}/includes/alert.php"; ?>
+    <?php
+    
+    $hideProfile = true;
+    include "includes/header.php";
+    
+    ?>
+
     <main>
-        <div class="container-fluid h-100 d-flex">
-            <div class="m-auto text-center">
-                <img src="images/couple-video-call-with-phone-free-vector.jpg" alt="#" width="255">
-                <div class="text-muted mt-4 tbold tlight">
-                    start a video call, <br>
-                    audio call <br>
-                    to your friends,family....
+        <div class="container vh-100 d-flex">
+            <div class="d-flex align-items-center justify-content-between gap-3 m-auto w-100">
+                <div class="hleft">
+                    <img src="images/747-7470354_live-chat-support-illustration-hd-png-download-removebg-preview.png" alt="#" class="img-contain">
                 </div>
-                <a class="btn bdark tlight rounded-5 px-4 py-2 mt-3" href="user/signin.php">GET STARTED</a>
+                <div class="htext">
+                    <h1>Welcome to <strong>connector</strong></h1>
+                    <p class="text-muted mt-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. <br> Aperiam autem illo quasi magni saepe nobis dolorem minima ullam a enim?</p>
+                    <?php if(!$user->isUserLogedIn()){
+                        echo "<a href='user/signin.php' class='btn fw-bold rounded-5 px-5 py-2 text-light'>Login</a>";
+                    } else {
+                        echo "<a href='app/chat.php' class='btn fw-bold rounded-5 px-5 py-2 text-light'>Start A Call</a>";
+                    } ?>
+                </div>
             </div>
         </div>
     </main>
-
-
-
 
 </body>
 

@@ -17,24 +17,10 @@
                 <?php
 
                 // get current user
-                if (isset($_SESSION['user_id'])) {
-                    $uid = $_SESSION['user_id'];
-                    if (isset($conn)) {
-                        $stmt = $conn->prepare("SELECT user_name, user_profile FROM users WHERE user_id = ?");
-                        $stmt->execute([$uid]);
-                        if ($stmt && $stmt->rowCount()) {
-                            $user = $stmt->fetch(PDO::FETCH_ASSOC);
-                            $user_name = base64_decode($user['user_name']);
-                            $user_profile = $user['user_profile'];
-                            if (!$user_profile || !file_exists($root . $user_profile)) {
-                                $user_profile = $baseurl . 'images/main-qimg-6d72b77c81c9841bd98fc806d702e859-lq.jfif';
-                            } else $user_profile = $baseurl . $user_profile;
-
-                            echo "<a href='app/user/account.php' title='$user_name' class='btn btn-profile-link rounded-circle ms-2'>
-                                      <img src='$user_profile' alt='#' class='rounded-circle bg-secondary img-cover'>
-                                  </a>";
-                        }
-                    }
+                if (!isset($hideProfile) && $user->isUserLogedIn()) {
+                    echo "<a href='app/user/account.php' title='$userName' class='btn btn-profile-link rounded-circle ms-2'>
+                              <img src='$userProfile' alt='#' class='rounded-circle bg-secondary img-cover'>
+                          </a>";
                 }
 
                 ?>
