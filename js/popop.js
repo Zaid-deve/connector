@@ -19,8 +19,8 @@ function closePopup(target) {
     }
 }
 
-function previewCallOptions(username, name, profile) {
-    if (username) {
+function previewCallOptions(peer, username, name, profile) {
+    if (peer) {
         showPopup('popup-make-call');
         $(".remote-username").text(`@${username}`);
         $(".remote-name").text(name);
@@ -29,7 +29,7 @@ function previewCallOptions(username, name, profile) {
             //     userNotAvailable(msg);
             //     return
             // }
-            location.replace(`https://${location.host}/connector/app/call/voice.php?userId=${username}`);
+            location.replace(`https://${location.host}/connector/app/call/voice.php?userId=${peer}`);
         })
 
         $("#__btn__video__call").click(function () {
@@ -37,7 +37,7 @@ function previewCallOptions(username, name, profile) {
             //     userNotAvailable(msg);
             //     return
             // }
-            location.replace(`https://${location.host}/connector/app/call/video.php?userId=${username}`);
+            location.replace(`https://${location.host}/connector/app/call/video.php?userId=${peer}`);
         })
     }
 }

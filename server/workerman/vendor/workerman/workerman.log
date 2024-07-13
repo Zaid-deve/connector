@@ -87,3 +87,34 @@ Stack trace:
 #6 C:\xampp\htdocs\connector\server\workerman\vendor\workerman\workerman\Worker.php(560): Workerman\Worker::forkWorkers()
 #7 C:\xampp\htdocs\connector\server\server.php(42): Workerman\Worker::runAll()
 #8 {main}
+2024-07-13 10:43:01 pid:1 Error: Cannot use object of type stdClass as array in C:\xampp\htdocs\connector\server\component.php:18
+Stack trace:
+#0 C:\xampp\htdocs\connector\server\workerman\vendor\workerman\workerman\Connection\TcpConnection.php(646): {closure}(Object(Workerman\Connection\TcpConnection), '{"type":"connec...')
+#1 C:\xampp\htdocs\connector\server\workerman\vendor\workerman\workerman\Events\Select.php(311): Workerman\Connection\TcpConnection->baseRead(Resource id #24)
+#2 C:\xampp\htdocs\connector\server\workerman\vendor\workerman\workerman\Worker.php(1488): Workerman\Events\Select->loop()
+#3 C:\xampp\htdocs\connector\server\workerman\vendor\workerman\workerman\Worker.php(1405): Workerman\Worker::forkWorkersForWindows()
+#4 C:\xampp\htdocs\connector\server\workerman\vendor\workerman\workerman\Worker.php(560): Workerman\Worker::forkWorkers()
+#5 C:\xampp\htdocs\connector\server\server.php(42): Workerman\Worker::runAll()
+#6 {main}
+2024-07-13 13:51:04 pid:1 Exception: You can't send(array) to client, you need to convert it to a string.  in C:\xampp\htdocs\connector\server\workerman\vendor\workerman\workerman\Protocols\Websocket.php:243
+Stack trace:
+#0 C:\xampp\htdocs\connector\server\workerman\vendor\workerman\workerman\Connection\TcpConnection.php(329): Workerman\Protocols\Websocket::encode(Array, Object(Workerman\Connection\TcpConnection))
+#1 C:\xampp\htdocs\connector\server\component.php(148): Workerman\Connection\TcpConnection->send(Array)
+#2 C:\xampp\htdocs\connector\server\workerman\vendor\workerman\workerman\Connection\TcpConnection.php(646): {closure}(Object(Workerman\Connection\TcpConnection), '{"type":"fetch-...')
+#3 C:\xampp\htdocs\connector\server\workerman\vendor\workerman\workerman\Events\Select.php(311): Workerman\Connection\TcpConnection->baseRead(Resource id #32)
+#4 C:\xampp\htdocs\connector\server\workerman\vendor\workerman\workerman\Worker.php(1488): Workerman\Events\Select->loop()
+#5 C:\xampp\htdocs\connector\server\workerman\vendor\workerman\workerman\Worker.php(1405): Workerman\Worker::forkWorkersForWindows()
+#6 C:\xampp\htdocs\connector\server\workerman\vendor\workerman\workerman\Worker.php(560): Workerman\Worker::forkWorkers()
+#7 C:\xampp\htdocs\connector\server\server.php(42): Workerman\Worker::runAll()
+#8 {main}
+2024-07-13 14:19:05 pid:1 TypeError: print_r(): Argument #2 ($return) must be of type bool, Workerman\Connection\TcpConnection given in C:\xampp\htdocs\connector\server\component.php:17
+Stack trace:
+#0 C:\xampp\htdocs\connector\server\component.php(17): print_r('emFpZF9wYXRlbA=...', Object(Workerman\Connection\TcpConnection))
+#1 C:\xampp\htdocs\connector\server\component.php(155): sendCandidates('emFpZF9wYXRlbA=...', Object(Workerman\Connection\TcpConnection))
+#2 C:\xampp\htdocs\connector\server\workerman\vendor\workerman\workerman\Connection\TcpConnection.php(646): {closure}(Object(Workerman\Connection\TcpConnection), '{"type":"fetch-...')
+#3 C:\xampp\htdocs\connector\server\workerman\vendor\workerman\workerman\Events\Select.php(311): Workerman\Connection\TcpConnection->baseRead(Resource id #28)
+#4 C:\xampp\htdocs\connector\server\workerman\vendor\workerman\workerman\Worker.php(1488): Workerman\Events\Select->loop()
+#5 C:\xampp\htdocs\connector\server\workerman\vendor\workerman\workerman\Worker.php(1405): Workerman\Worker::forkWorkersForWindows()
+#6 C:\xampp\htdocs\connector\server\workerman\vendor\workerman\workerman\Worker.php(560): Workerman\Worker::forkWorkers()
+#7 C:\xampp\htdocs\connector\server\server.php(42): Workerman\Worker::runAll()
+#8 {main}

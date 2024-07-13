@@ -35,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $reqType = $_POST['type'] ?? 'reject';
 
         if ($reqType === 'accept') {
-            $stmt = $conn->prepare("INSERT INTO user_friends(fr_sender_id, fr_res_id) VALUES (?,?)");
+            $stmt = $conn->prepare("INSERT INTO user_friends(sender_user_id, recipient_user_id) VALUES (?,?)");
             $stmt->execute([$senderId, $uid]);
             if ($stmt && $stmt->rowCount()) {
                 $reqAccepted = true;

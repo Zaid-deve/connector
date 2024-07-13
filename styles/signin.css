@@ -1,5 +1,6 @@
-.field input {
-    width: 420px;
+.form-container{
+    max-width: 420px;
+    width: 100%;
 }
 
 .field input {

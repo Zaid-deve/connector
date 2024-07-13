@@ -59,7 +59,8 @@ require_once $root . "includes/head.php";
                         if ($response['Users']) {
                             echo "<ul class='list-group friends-list'>";
                             foreach ($response['Users'] as $f) {
-                                echo "<li class='list-group-item border-0 rounded-0 friend-list-item py-3' onclick=\"previewCallOptions('{$f['username']}', '{$f['name']}', '{$f['profile']}')\">
+                                $peer = base64_encode($f['username']);
+                                echo "<li class='list-group-item border-0 rounded-0 friend-list-item py-3' onclick=\"previewCallOptions('{$peer}','{$f['username']}', '{$f['name']}', '{$f['profile']}')\">
                                           <div class='d-flex align-items-center gap-2'>
                                               <img src='../{$f['profile']}' alt='#' class='rounded-circle img-cover flex-shrink-0 friend-profile-img' height='46' width='46'>
                                               <div class='friend-info flex-shrink-0'>
@@ -174,7 +175,7 @@ require_once $root . "includes/head.php";
             </div>
 
             <!-- accept request -->
-            <div class="popup popop-dismisable popup-accept-req d-none">
+            <div class="popup popup-dismisable popup-accept-req d-none">
                 <div class="popup-header popup-accept-req-header">
                     <h3>Accept Request</h3>
                     <small>now this user will let you call even when you are offline</small>
@@ -245,7 +246,6 @@ require_once $root . "includes/head.php";
 
     <!-- scripts -->
     <script src="../js/functions.js"></script>
-    <script src="../js/modifyRequest.js"></script>
     <script src="../js/header.js"></script>
     <script src="../js/popop.js"></script>
     <?php
@@ -257,7 +257,8 @@ require_once $root . "includes/head.php";
              <script src='../js/wsconnection.js'></script>
              <script src='https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js'></script>
              <script src='../js/notifyCall.js'></script>
-             <script src='../js/sendRequest.js'></script>";
+             <script src='../js/sendRequest.js'></script>
+             <script src='../js/modifyRequest.js'></script>";
     } else {
         echo "<script src='../js/createProfile.js'></script>";
     }

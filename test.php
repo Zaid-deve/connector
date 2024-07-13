@@ -1,8 +1,7 @@
 
 <?php
 
-require_once "db/conn.php";
-require_once "user/user.php";
-$user = new User();
-$data = $user->getUser($conn, $user->getUserId(),['user_email','user_pass']);
-print_r($data);
+$array = [];
+$array['ancd'] = ['con' => [], 'st' => 1];
+$array['vvf'] = ['con' => 13131, 'st' => 13131];
+print_r($array);

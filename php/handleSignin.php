@@ -40,15 +40,15 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         try {
             $stmt = $conn->prepare("SELECT * FROM users WHERE user_email = ?");
             $stmt->execute([$enc_email]);
-            $user = $stmt->fetch(PDO::FETCH_ASSOC);
+            $data = $stmt->fetch(PDO::FETCH_ASSOC);
 
             // validate
             if (!$stmt->rowCount()) {
                 throw new Exception('NO_USER_FOUND');
             } else {
-                if ($user['user_pass'] === $enc_pass) {
+                if ($data['user_pass'] === $enc_pass) {
                     $response['Success'] = true;
-                    $user->setUserId($user['user_id']);
+                    $user->setUserId($data['user_id']);
                 } else {
                     $response['ErrType'] = "Password";
                     $response['Err'] = "Password Does Not Match !";

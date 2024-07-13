@@ -28,10 +28,8 @@ require_once "./includes/head.php";
     <main>
         <div class="container vh-100 d-flex">
             <div class="d-flex align-items-center justify-content-between gap-3 m-auto w-100">
-                <div class="hleft">
-                    <img src="images/747-7470354_live-chat-support-illustration-hd-png-download-removebg-preview.png" alt="#" class="img-contain">
-                </div>
-                <div class="htext">
+                <div class="hleft d-none d-md-block"></div>
+                <div class="htext text-center text-md-start">
                     <h1>Welcome to <strong>connector</strong></h1>
                     <p class="text-muted mt-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. <br> Aperiam autem illo quasi magni saepe nobis dolorem minima ullam a enim?</p>
                     <?php if(!$user->isUserLogedIn()){

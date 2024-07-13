@@ -11,29 +11,33 @@ $(function () {
         }
     })
 
-    sendReqbtn.click(function () {
+    sendReqbtn.click(async function () {
         let userId = friendId.val();
         if (!userId) return;
 
         friendId.prop('readonly', true);
         sendReqbtn.prop('disabled', true);
 
-        $.post("../php/handleRequest.php", { userId }, function (resp) {
-            const r = JSON.parse(resp);
-            if (r.Success) {
-                closePopup('popup-add-friend');
-                return;
-            }
+        try {
+            await $.post("../php/handleRequest.php", { userId }, function (resp) {
+                const r = JSON.parse(resp);
+                if (r.Success) {
+                    closePopup('popup-add-friend')
+                    return;
+                }
 
-            if (r.IdErr) {
-                friendIdErr.text(r.IdErr)
-            }
-            else {
-                throwErr(r.Err || 'Something Went Wrong !');
-            }
-        }).always(() => {
-            friendId.prop('readonly', false);
-            sendReqbtn.prop('disabled', false);
-        })
+                if (r.IdErr) {
+                    friendIdErr.text(r.IdErr)
+                }
+                else {
+                    throwErr(r.Err || 'Something Went Wrong !');
+                }
+            })
+        } catch (e) {
+            throwErr('Something Went Wrong');
+        }
+
+        friendId.prop('readonly', false);
+        sendReqbtn.prop('disabled', false);
     })
 })

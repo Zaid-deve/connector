@@ -33,24 +33,26 @@ class User
         $_SESSION['user_id'] = $id;
     }
 
-    function getUser($conn, $uid, $returns = [])
+    function getUser($conn, $target, $returns = [])
     {
         $sel = empty($returns) ? "*" : implode(",", $returns);
-        $stmt = $conn->prepare("SELECT $sel FROM users WHERE user_id = ?");
-        $stmt->execute([$uid]);
+        $stmt = $conn->prepare("SELECT $sel FROM users WHERE user_id = ? || user_name = ?");
+        $stmt->execute([$target, $target]);
+
         if ($stmt && $stmt->rowCount()) {
             $user = $stmt->fetch(PDO::FETCH_ASSOC);
-            if ($sel != '*') {
-                $rd = [];
-                foreach ($returns as $r) {
-                    $rd[$r] = $user[$r];
+            if($sel=='*'){
+                return $user;
+            } else {
+                $rt = [];
+                foreach($returns as $r){
+                    $rt[$r] = $user[$r];
                 }
-                if (count($rd) == 1) {
-                    return $rd[0];
+                if(count($rt) == 1){
+                    return array_shift($rt);
                 }
-                return $rd;
+                return $rt;
             }
-            return $user;
         }
         return false;
     }

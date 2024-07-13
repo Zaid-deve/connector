@@ -24,7 +24,7 @@ require_once "../includes/head.php";
     <?php require_once "../includes/alert.php" ?>
     <main>
         <div class="container vh-100 d-flex">
-            <div class="d-flex align-items-center justufy-content-center m-auto">
+            <div class="m-auto form-container">
                 <form action="#" id="signinform" autocomplete="off" autocapitalize="off">
                     <h1 class="text-secondary mb-0">Sign In</h1>
                     <small class="text-muted">We Keep Your Data Private And Encrypted</small>

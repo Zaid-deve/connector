@@ -1,13 +1,15 @@
-.hleft img {
-    max-height: 420px;
+.hleft  {
+    background: url(../images/747-7470354_live-chat-support-illustration-hd-png-download-removebg-preview.png) no-repeat center;
+    background-size: contain;
+    height: 500px;
+    width: 500px;
 }
 
 .htext{
-    width: 390px;
+    min-width: 390px;
 }
 
 .htext .btn{
     letter-spacing: .1rem;
     background-color: var(--color-dark);
-}
-
+} 
