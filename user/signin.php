@@ -40,7 +40,10 @@ require_once "../includes/head.php";
                             <input type="password" class="form-control" id="__pass" placeholder="Enter password">
                             <div class="err text-danger"></div>
                         </div>
-                        <button class="btn w-100 py-2 mt-4 text-light fw-bold" type="submit" id="submit" disabled>Submit</button>
+                        <button class="btn w-100 py-2 mt-3 rounded-5" type="submit" id="submit" disabled>
+                            <span class="text-light fw-bold btn-text">Continue</span> 
+                            <i class="ri-arrow-right-line ms-1 text-light"></i>
+                        </button>
                     </div>
                 </form>
             </div>

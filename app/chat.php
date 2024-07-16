@@ -7,8 +7,6 @@ require_once "../user/user.php";
 $user = new User(true);
 $uid = $user->getUserId();
 
-
-
 // includes head
 $pagename = "Home";
 require_once $root . "includes/head.php";
@@ -209,8 +207,14 @@ require_once $root . "includes/head.php";
                         </div>
                     </div>
                     <div class="d-flex gap-2">
-                        <button class="btn btn-primary rounded-2 mt-3 py-2 w-50" id="__btn__voice__call"><i class="ri-phone-fill text-light"></i>&nbsp; Audio Call</button>
-                        <button class="btn btn-dark rounded-2 mt-3 py-2 w-50" id="__btn__video__call"><i class="ri-video-chat-line text-light fw-lighter"></i>&nbsp; Video Call</button>
+                        <button class="btn btn-primary rounded-5 mt-3 py-2 w-50" id="__btn__voice__call">
+                            <i class="ri-volume-up-line text-light fw-lighter"></i>
+                            <span class="fw-bold ms-2 text-light">Audio Call</span>
+                        </button>
+                        <button class="btn btn-dark rounded-5 mt-3 py-2 w-50" id="__btn__video__call">
+                            <i class="ri-vidicon-line text-light fw-lighter"></i>
+                            <span class="fw-bold ms-2 text-light">Video Call</span>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -247,7 +251,7 @@ require_once $root . "includes/head.php";
     <!-- scripts -->
     <script src="../js/functions.js"></script>
     <script src="../js/header.js"></script>
-    <script src="../js/popop.js"></script>
+    <script src="../js/popup.js"></script>
     <?php
 
     if (!empty($userId)) {

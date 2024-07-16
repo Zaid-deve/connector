@@ -6,6 +6,5 @@ RewriteCond %{HTTPS} !=on
 # Redirect to HTTPS
 RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
-<IfModule mod_autoindex.c>
-IndexIgnore *
-</IfModule>
+# Block access to all files except index files
+# Block access to all directories

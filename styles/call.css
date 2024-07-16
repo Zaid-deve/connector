@@ -1,76 +1,68 @@
-body{
-    overflow: hidden;
+body {
+    background: var(--color-light);
 }
 
-.float-win{
-    max-width: 420px;
-    width: 100%;
-    z-index: 4;
+.container-icon {
+    height: 90px;
+    width: 90px;
+    line-height: 90px;
+    text-align: center;
+}
+.container-icon i{
+    font-size: 2rem;
 }
 
-.float-info-win {
-    transform: translateX(-50%);
-    bottom: 75px;
-}
-.user-img {
+.top-controls .btn {
     height: 42px;
     width: 42px;
-    object-fit: cover;
-    border-radius: 50%;
+    padding: 0;
 }
 
-.user-info{
-    line-height: 17px;
+.top-controls .btn i {
+    font-size: 1.3rem;
+}
+
+.top-controls .btn:hover {
+    background: var(--color-light-30);
+}
+
+.top-controls h1 {
+    font-family: var(--font-logo);
+    font-weight: 600;
+}
+
+.remote-peer-info {
+    line-height: 19px;
+}
+
+.remote-peer-img {
+    height: 55px;
+    width: 55px;
 }
 
 .btn-decline-call {
     background: var(--color-red);
-    height: 60px;
-    width: 60px;
+    font-size: 1.1rem;
+    transition: all .16s ease;
 }
 
-
-.btn-decline-call i {
-    transform: rotate(135deg);
-    color: var(--color-light);
+.btn-decline-call .call-icon {
+    transform: rotate(90deg);
+    font-size: 1.2rem;
 }
 
-.cbtns .btn
-{
-    height: 45px;
-    width: 45px;
+.btn-decline-call:hover {
+    transform: scale(1.1);
+    background: var(--color-red);
 }
 
-.local-peer {
-    height: 140px;
-    width: 200px;
+.popup-header .btn-back{
+    height: 38px;
+    width: 38px;
+    line-height: 38px;
+    background-color: var(--color-light);
 }
 
-.banner {
-    height: 150px;
-    width: 100%;
-    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.5)), url(../images/a77176579c9d4ab7f95fa20ac24d3100.gif) no-repeat center;
-    background-size: cover;
-}
-.banner h5 {
-    line-height: 150px;
-    font-weight: 900;
-    letter-spacing: .7px;
-}
-
-.call-end-win .float-win {
-    overflow: hidden;
-}
-.call-end-win {
-    z-index: 999;
-}
-
-#savebtn{
-    font-weight: 600;
-    color: var(--color-primary);
-    font-size: .9em;
-}
-
-#savebtn i{
-    color: var(--color-primary);
+.popup-header .btn-back  i{
+    font-size: 1.2rem;
 }

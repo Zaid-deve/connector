@@ -31,6 +31,7 @@ $(function () {
                 isEmailVerified = true;
                 email.parent().addClass('d-none')
                 pass.parent().removeClass('d-none').hide().fadeIn(350);
+                $(".btn-text").text('Sign In').fadeIn(350)
             } else {
                 emailErr.text('Please enter a valid email address');
             }

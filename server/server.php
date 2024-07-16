@@ -36,7 +36,7 @@ $ws_worker->count = 4;
 require_once __DIR__ . '/component.php';
 
 // Set up error logging
-// Worker::$stdoutFile = __DIR__ . 'workerman.log';
+Worker::$stdoutFile = __DIR__ . 'workerman.log';
 
 // Run the server
 Worker::runAll();

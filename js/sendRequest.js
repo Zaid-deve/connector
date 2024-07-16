@@ -4,7 +4,7 @@ $(function () {
         friendIdErr = $(".__friend__id__err")
 
     friendId.on('input', function () {
-        if ($(this).val().length > 6) {
+        if ($(this).val().length >= 6) {
             sendReqbtn.prop('disabled', false)
         } else {
             sendReqbtn.prop('disabled', true)

@@ -42,3 +42,7 @@ header {
     font-weight: 600;
     border: none;
 }
+
+.btn:disabled{
+    cursor: not-allowed !important;
+}

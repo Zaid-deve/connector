@@ -2,10 +2,11 @@
     <div class="container-fluid position-relative">
         <div class="nav d-flex align-items-center">
             <div class="brand me-auto">
-                <div class="brand-text mb-3 fw-bolder">
+                <!-- <div class="brand-text mb-3 fw-bolder">
                     connector
-                </div>
-            </div>
+                </div> -->
+                <img src="<?php echo $baseurl . 'images/app-logo.png' ?>" alt="#" id="appLogo">
+            </div> 
 
             <div class="header-right d-flex align-items-center ms-sm-0 ms-auto">
                 <div class="position-relative">

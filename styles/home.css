@@ -13,3 +13,9 @@
     letter-spacing: .1rem;
     background-color: var(--color-dark);
 } 
+
+@media(max-width:460px){
+    .htext{
+        min-width: 0;
+    }
+}

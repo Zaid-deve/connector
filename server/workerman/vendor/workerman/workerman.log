@@ -118,3 +118,30 @@ Stack trace:
 #6 C:\xampp\htdocs\connector\server\workerman\vendor\workerman\workerman\Worker.php(560): Workerman\Worker::forkWorkers()
 #7 C:\xampp\htdocs\connector\server\server.php(42): Workerman\Worker::runAll()
 #8 {main}
+2024-07-13 19:48:52 pid:1 Error: Call to a member function send() on null in C:\xampp\htdocs\connector\server\component.php:39
+Stack trace:
+#0 C:\xampp\htdocs\connector\server\workerman\vendor\workerman\workerman\Connection\TcpConnection.php(646): {closure}(Object(Workerman\Connection\TcpConnection), '{"sdp":"v=0\\r\\n...')
+#1 C:\xampp\htdocs\connector\server\workerman\vendor\workerman\workerman\Events\Select.php(311): Workerman\Connection\TcpConnection->baseRead(Resource id #24)
+#2 C:\xampp\htdocs\connector\server\workerman\vendor\workerman\workerman\Worker.php(1488): Workerman\Events\Select->loop()
+#3 C:\xampp\htdocs\connector\server\workerman\vendor\workerman\workerman\Worker.php(1405): Workerman\Worker::forkWorkersForWindows()
+#4 C:\xampp\htdocs\connector\server\workerman\vendor\workerman\workerman\Worker.php(560): Workerman\Worker::forkWorkers()
+#5 C:\xampp\htdocs\connector\server\server.php(42): Workerman\Worker::runAll()
+#6 {main}
+2024-07-13 19:49:56 pid:1 Error: Call to a member function send() on null in C:\xampp\htdocs\connector\server\component.php:39
+Stack trace:
+#0 C:\xampp\htdocs\connector\server\workerman\vendor\workerman\workerman\Connection\TcpConnection.php(646): {closure}(Object(Workerman\Connection\TcpConnection), '{"sdp":"v=0\\r\\n...')
+#1 C:\xampp\htdocs\connector\server\workerman\vendor\workerman\workerman\Events\Select.php(311): Workerman\Connection\TcpConnection->baseRead(Resource id #24)
+#2 C:\xampp\htdocs\connector\server\workerman\vendor\workerman\workerman\Worker.php(1488): Workerman\Events\Select->loop()
+#3 C:\xampp\htdocs\connector\server\workerman\vendor\workerman\workerman\Worker.php(1405): Workerman\Worker::forkWorkersForWindows()
+#4 C:\xampp\htdocs\connector\server\workerman\vendor\workerman\workerman\Worker.php(560): Workerman\Worker::forkWorkers()
+#5 C:\xampp\htdocs\connector\server\server.php(42): Workerman\Worker::runAll()
+#6 {main}
+2024-07-14 19:15:14 pid:1 Error: Call to a member function send() on array in C:\xampp\htdocs\connector\server\component.php:69
+Stack trace:
+#0 C:\xampp\htdocs\connector\server\workerman\vendor\workerman\workerman\Connection\TcpConnection.php(646): {closure}(Object(Workerman\Connection\TcpConnection), '{"from":"emFpZF...')
+#1 C:\xampp\htdocs\connector\server\workerman\vendor\workerman\workerman\Events\Select.php(311): Workerman\Connection\TcpConnection->baseRead(Resource id #36)
+#2 C:\xampp\htdocs\connector\server\workerman\vendor\workerman\workerman\Worker.php(1488): Workerman\Events\Select->loop()
+#3 C:\xampp\htdocs\connector\server\workerman\vendor\workerman\workerman\Worker.php(1405): Workerman\Worker::forkWorkersForWindows()
+#4 C:\xampp\htdocs\connector\server\workerman\vendor\workerman\workerman\Worker.php(560): Workerman\Worker::forkWorkers()
+#5 C:\xampp\htdocs\connector\server\server.php(42): Workerman\Worker::runAll()
+#6 {main}

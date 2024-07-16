@@ -80,7 +80,6 @@ $(function () {
                 return;
             }
 
-            console.log(userId, data.to)
             if (data.type == "incomming" && data.to == userId) {
                 // defaults
                 let from = data.from,
@@ -102,7 +101,7 @@ $(function () {
                         $('.inc-call-msg').text(`incomming ${callType} from ${userData.name || from}`)
                     }
 
-                    handleTimeLeft(callExpires);
+                    handleTimeLeft(callExpires / 1000);
 
 
                     if (callType === 'video') {
