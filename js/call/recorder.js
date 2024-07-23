@@ -4,9 +4,30 @@
 
 let mediaRecorder,
     recordedChunks = [],
-    combinedStream = new MediaStream();
+    combinedStream;
 
-function initRecorder(localStream, remoteStream, callback) {
+function initRecorder(localStream, remoteStream, isVideo, callback) {
+    if (isVideo) {
+        const canvas = document.createElement('canvas'),
+            context = canvas.getContext("2d"),
+            height = canvas.height = 768,
+            width = canvas.width = 1440,
+            videoWidth = width / 2;
+
+        // draw
+        function draw() {
+            context.clearRect(0, 0, width, height)
+            context.drawImage(localVideo, 0, 0, videoWidth, height)
+            context.drawImage(remoteVideo, videoWidth, 0, videoWidth, height)
+            requestAnimationFrame(draw)
+        }
+        draw();
+        combinedStream = canvas.captureStream(30);
+        startRecorder(combinedStream, callback)
+        return;
+    }
+
+    combinedStream = new MediaStream()
 
     if (localStream) {
         localStream.getTracks().forEach(track => combinedStream.addTrack(track))
@@ -42,13 +63,13 @@ function startRecorder(stream, callback) {
     }
 }
 
-function stopRecorder(){
-    if(mediaRecorder){
+function stopRecorder() {
+    if (mediaRecorder) {
         mediaRecorder.stop();
     }
 }
 
-function prepareBlob(chunks, mime = 'audio/webm') {
+function prepareBlob(chunks, mime) {
     const blob = new Blob(chunks, { type: mime });
     return URL.createObjectURL(blob);
 }

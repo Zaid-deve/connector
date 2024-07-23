@@ -1,4 +1,13 @@
 $(function () {
+    // is profile added
+    try {
+        if (isProfileAdded) {
+            return;
+        }
+    } catch { }
+
+
+    showPopup('popup-set-profile');
     const username = $("#__username"),
         name = $("#__name"),
         usernameErr = $(".__username__err"),

@@ -1,4 +1,3 @@
-let peer;
 $(function () {
     // voice call
     if ([wss, userId, remoteUser].includes(null, undefined, '')) {
@@ -8,16 +7,23 @@ $(function () {
         try {
 
             let remoteAudio = $("#remoteAudio")[0];
+            remoteAudio.volume = 0.6;
 
             // start call
             wss.addEventListener('open', async () => {
-                isCaller = true;
                 peer = initCall(remoteAudio);
-                if (peer) {
-                    await initVoiceOffer();
-                } else {
+
+                if (!peer) {
                     throwErr("Failed To Initiate A Call");
+                    return;
                 }
+
+                if (isCaller) {
+                    if (!await initOffer({ audio: true })) {
+                        alert('an error accured, cannot preapre call');
+                    }
+                }
+
             });
 
             // message handler

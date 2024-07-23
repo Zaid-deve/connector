@@ -1,10 +1,12 @@
 :root {
     --color-dark: #240505;
+    --color-dark2: #1a1919;
     --color-red: #F14848;
     --color-light: #eee;
     --color-light-30: #36363660;
     --color-primary: #6662E2;
     --color-white: #fff;
+    --color-success: #64CD8A;
     --font-logo: "Hachi Maru Pop", cursive;
     --font-primary: 'Outfit', serif;
     --header-height: 85px;
@@ -39,7 +41,7 @@
 }
 
 @media (max-width:560px) {
-    :root{
+    :root {
         --header-height: 75px;
     }
 }

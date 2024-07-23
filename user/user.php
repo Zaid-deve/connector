@@ -41,14 +41,14 @@ class User
 
         if ($stmt && $stmt->rowCount()) {
             $user = $stmt->fetch(PDO::FETCH_ASSOC);
-            if($sel=='*'){
+            if ($sel == '*') {
                 return $user;
             } else {
                 $rt = [];
-                foreach($returns as $r){
+                foreach ($returns as $r) {
                     $rt[$r] = $user[$r];
                 }
-                if(count($rt) == 1){
+                if (count($rt) == 1) {
                     return array_shift($rt);
                 }
                 return $rt;
@@ -57,14 +57,15 @@ class User
         return false;
     }
 
-    function getProfileUri($profile)
-    {
-        $uri = "https://{$_SERVER['SERVER_NAME']}/profiles/" . basename($profile);
-        if (!$profile || !file_exists($profile)) {
-            $uri = "https://{$_SERVER['SERVER_NAME']}/connector/images/main-qimg-6d72b77c81c9841bd98fc806d702e859-lq.jfif";
-        }
-        return $uri;
-    }
+    // function getProfileUri($profile)
+    // {
+    //     $rootUri = $_SERVER['DOCUMENT_ROOT'] . '/connector/profiles/' . basename($profile);
+    //     $uri = "https://{$_SERVER['SERVER_NAME']}/connector/profiles/" . basename($profile);
+    //     if (!$profile || !file_exists($rootUri)) {
+    //         $uri = "https://{$_SERVER['SERVER_NAME']}/connector/images/main-qimg-6d72b77c81c9841bd98fc806d702e859-lq.jfif";
+    //     }
+    //     return $uri;
+    // }
 
     function isUserLogedIn($redirect = false)
     {
@@ -76,5 +77,15 @@ class User
             return;
         }
         return true;
+    }
+
+    static function getProfileUri($profile)
+    {
+        $rootUri = $_SERVER['DOCUMENT_ROOT'] . '/connector/profiles/' . basename($profile);
+        $uri = "https://{$_SERVER['SERVER_NAME']}/connector/profiles/" . basename($profile);
+        if (!$profile || !file_exists($rootUri)) {
+            $uri = "https://{$_SERVER['SERVER_NAME']}/connector/images/main-qimg-6d72b77c81c9841bd98fc806d702e859-lq.jfif";
+        }
+        return $uri;
     }
 }

@@ -1,7 +1,7 @@
 .header {
     background: #fff;
     box-shadow: 0 0 10px #eee;
-    z-index: 998;
+    z-index: 998 !important;
 }
 
 .header .nav {
@@ -15,7 +15,7 @@
 } */
 
 .header #appLogo{
-    max-height: 40px;
+    height: 50px;
 }
 
 .requests-menu {
@@ -35,10 +35,6 @@
     cursor: pointer;
 }
 
-.requests-list .requests-item:is(.active, .hover) {
-    background: blueviolet;
-}
-
 .requests-menu-container {
     right: 75px;
     top: 80px;
@@ -48,19 +44,21 @@
     z-index: 4;
     max-height: 320px;
     overflow: auto;
-    box-shadow: 0 0 5px #eee;
+    box-shadow: 0 0 10px #eee;
 }
 
 .header-btn {
-    height: 42px;
-    width: 42px;
-    background: #f7f7f7;
+    height:36px;
+    width:36px;
     padding: 0;
     border-radius: 150px;
-    font-size: 1.3rem;
 }
 .header-btn i{
-    font-weight: 100;
+    font-weight: 100 !important;
+    font-size: 1.4rem;
+}
+.header-btn:hover{
+    background: #f7f7f7;
 }
 
 .btn-profile-link{
@@ -78,27 +76,36 @@
     transform: scale(1);
 }
 
+.pending-req-badge{
+    background: var(--color-primary);
+    font-size: .92rem;
+}
+
 @media (max-width:560px) {
     .brand .brand-text {
         font-size: 1.5rem;
     }
 
     .requests-menu-container {
+        position: fixed !important;
         max-height: 420px;
         right: 0;
-        top: 100%;
+        top: 0;
         width: 100%;
+        padding: 10px;
     }
 
     .requests-menu-container .requests-menu{
-        border-radius: 0;
-        box-shadow: none;
         width: 100%;
+    }
+
+    #appLogo{
+        height: 36px !important;
     }
 }
 
-@media (max-width:380px) {
-    .brand .brand-text {
-        font-size: 1.2rem;
+@media (max-width:360px) {
+    #appLogo{
+        height: 32px !important;
     }
 }

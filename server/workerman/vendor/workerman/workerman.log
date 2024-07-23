@@ -145,3 +145,30 @@ Stack trace:
 #4 C:\xampp\htdocs\connector\server\workerman\vendor\workerman\workerman\Worker.php(560): Workerman\Worker::forkWorkers()
 #5 C:\xampp\htdocs\connector\server\server.php(42): Workerman\Worker::runAll()
 #6 {main}
+2024-07-17 11:59:34 pid:1 Error: Call to a member function send() on null in C:\xampp\htdocs\connector\server\component.php:69
+Stack trace:
+#0 C:\xampp\htdocs\connector\server\workerman\vendor\workerman\workerman\Connection\TcpConnection.php(646): {closure}(Object(Workerman\Connection\TcpConnection), '{"from":"dGVzdG...')
+#1 C:\xampp\htdocs\connector\server\workerman\vendor\workerman\workerman\Events\Select.php(311): Workerman\Connection\TcpConnection->baseRead(Resource id #26)
+#2 C:\xampp\htdocs\connector\server\workerman\vendor\workerman\workerman\Worker.php(1488): Workerman\Events\Select->loop()
+#3 C:\xampp\htdocs\connector\server\workerman\vendor\workerman\workerman\Worker.php(1405): Workerman\Worker::forkWorkersForWindows()
+#4 C:\xampp\htdocs\connector\server\workerman\vendor\workerman\workerman\Worker.php(560): Workerman\Worker::forkWorkers()
+#5 C:\xampp\htdocs\connector\server\server.php(42): Workerman\Worker::runAll()
+#6 {main}
+2024-07-18 18:26:36 pid:1 Error: Call to a member function send() on null in C:\xampp\htdocs\connector\server\component.php:75
+Stack trace:
+#0 C:\xampp\htdocs\connector\server\workerman\vendor\workerman\workerman\Connection\TcpConnection.php(646): {closure}(Object(Workerman\Connection\TcpConnection), '{"from":"dGVzdG...')
+#1 C:\xampp\htdocs\connector\server\workerman\vendor\workerman\workerman\Events\Select.php(311): Workerman\Connection\TcpConnection->baseRead(Resource id #24)
+#2 C:\xampp\htdocs\connector\server\workerman\vendor\workerman\workerman\Worker.php(1488): Workerman\Events\Select->loop()
+#3 C:\xampp\htdocs\connector\server\workerman\vendor\workerman\workerman\Worker.php(1405): Workerman\Worker::forkWorkersForWindows()
+#4 C:\xampp\htdocs\connector\server\workerman\vendor\workerman\workerman\Worker.php(560): Workerman\Worker::forkWorkers()
+#5 C:\xampp\htdocs\connector\server\server.php(42): Workerman\Worker::runAll()
+#6 {main}
+2024-07-22 16:56:39 pid:1 TypeError: Illegal offset type in C:\xampp\htdocs\connector\server\component.php:29
+Stack trace:
+#0 C:\xampp\htdocs\connector\server\workerman\vendor\workerman\workerman\Connection\TcpConnection.php(646): {closure}(Object(Workerman\Connection\TcpConnection), '{"type":"connec...')
+#1 C:\xampp\htdocs\connector\server\workerman\vendor\workerman\workerman\Events\Select.php(311): Workerman\Connection\TcpConnection->baseRead(Resource id #24)
+#2 C:\xampp\htdocs\connector\server\workerman\vendor\workerman\workerman\Worker.php(1488): Workerman\Events\Select->loop()
+#3 C:\xampp\htdocs\connector\server\workerman\vendor\workerman\workerman\Worker.php(1405): Workerman\Worker::forkWorkersForWindows()
+#4 C:\xampp\htdocs\connector\server\workerman\vendor\workerman\workerman\Worker.php(560): Workerman\Worker::forkWorkers()
+#5 C:\xampp\htdocs\connector\server\server.php(42): Workerman\Worker::runAll()
+#6 {main}

@@ -30,22 +30,27 @@ function isBase64($string)
 function diff($timestamp)
 {
     $now = new DateTime();
-    $then = new DateTime($timestamp);
-    $diff = $now->diff($then);
-    $formats = ['year', 'month', 'day', 'hour', 'minute', 'second'];
-
-    $i = 0;
-    $output = "";
-    foreach ($diff as $d => $v) {
-        if ($v > 0) {
-            $output = $v . $formats[$i] . ' ago';
-            break;
-        }
-
-        if ($d == 's') {
-            break;
-        }
-        $i++;
+    $givenTime = new DateTime($timestamp);
+    $interval = $now->diff($givenTime);
+    $diffInSeconds = $now->getTimestamp() - $givenTime->getTimestamp();
+    if ($diffInSeconds <= 60 && $diffInSeconds >= 0) {
+        return 'just now';
     }
-    return $output;
+
+    $timeUnits = [
+        'year' => $interval->y,
+        'month' => $interval->m,
+        'day' => $interval->d,
+        'hour' => $interval->h,
+        'minute' => $interval->i,
+        'second' => $interval->s
+    ];
+
+    foreach ($timeUnits as $unit => $value) {
+        if ($value > 0) {
+            return "$value $unit" . ($value > 1 ? 's' : '') . " ago";
+        }
+    }
+
+    return 'just now';
 }

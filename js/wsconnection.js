@@ -1,7 +1,9 @@
 let wss,
-    wssErr;
+    wssErr,
+    ws_server = location.host,
+    isUserConnected = false;
 
-function connectUser(userId) {
+function connectUser() {
     if (userId) {
         const data = {
             type: 'connection',
@@ -9,30 +11,51 @@ function connectUser(userId) {
         }
 
         wss.send(JSON.stringify(data))
-        return true;
+        isUserConnected = true;
+        return isUserConnected;
     }
 }
 
-$(function () {
-    if(!userId){
-        throwErr('Something Went Wrong, No Connection Could Be Made To Server !');
-        return;
+function conenctToSocket(port = 11001) {
+    if (wss && wss.readyState == 1) {
+        return wss;
     }
 
-    // wss connection
-    let ws_server = location.host;
-    wss = new WebSocket(`wss://${ws_server}:11001`);
-    wss.addEventListener('open', () => {
-        connectUser(userId);
-    })
+    // connect instead
+    wss = new WebSocket(`wss://${ws_server}:${port}`);
+    return wss;
+}
 
-    wss.addEventListener('close', (e) => {
-        if (e.code === 1006) {
-            wssErr = e.reason || 'connection closed explicitly !';
+function showSocketConnectionErr() {
+    closePopup();
+    showPopup('popup-connect-error');
+    setTimeout(conenctToSocket, 2500);
+}
+
+$(function () {
+
+    // socket connection
+    conenctToSocket();
+    if (wss) {
+
+        // socket handlers
+        wss.addEventListener('open', connectUser)
+        wss.addEventListener('error', showSocketConnectionErr)
+        wss.addEventListener('close', function (e) {
+            if (!e.wasClean) {
+                showSocketConnectionErr();
+            }
+        })
+
+        navigator.onLine = function () {
+            if (wss.readyState != 1) {
+                conenctToSocket();
+                if (wss) {
+                    closePopup()
+                }
+            }
         }
-    })
 
-    wss.addEventListener('error', (e) => {
-        wssErr = e;
-    })
+    }
+
 })

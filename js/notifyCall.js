@@ -32,7 +32,7 @@ $(function () {
 
         function handleTimeLeft(expiry) {
             if (callStatus != 'ringing') return;
-            const current = Date.now() / 1000,
+            const current = Math.floor(Date.now() / 1000),
                 diff = expiry - current,
                 timeLeft = Math.floor(diff);
 
@@ -60,7 +60,7 @@ $(function () {
             if (!user_name) return;
             let data = false;
 
-            $.post('../php/getUserInfo.php', { user_name }, function (resp) {
+            $.post(`${ORIGIN}/php/getUserInfo.php`, { user_name }, function (resp) {
                 const r = JSON.parse(resp)
                 if (r.Success) {
                     data = r.Data;
@@ -85,7 +85,7 @@ $(function () {
                 let from = data.from,
                     callType = data.callType,
                     callExpires = parseInt(data.expires),
-                    callUri = `call/voice.php?userId=${from}&type=answer`
+                    callUri = `${ORIGIN}/app/call/voice.php?userId=${from}&type=answer`
 
                 getUserData(from, function (userData) {
                     callStatus = 'ringing';
@@ -98,7 +98,7 @@ $(function () {
                         $('.inc-profile').attr('src', userData.profile);
                         $('.inc-username').text(userData.user_name)
                         $('.inc-name').text(userData.name)
-                        $('.inc-call-msg').text(`incomming ${callType} from ${userData.name || from}`)
+                        $('.inc-call-msg').text(`incomming ${callType} from ${userData.name || userData.user_name}`)
                     }
 
                     handleTimeLeft(callExpires / 1000);
@@ -106,7 +106,7 @@ $(function () {
 
                     if (callType === 'video') {
                         $(".inc-icon").html('<i class="ri-video-line"></i>')
-                        callUri = `call/video.php?userId=${from}&type=answer`
+                        callUri = `${ORIGIN}/app/call/video.php?userId=${from}&type=answer`
                     }
 
                     $("#__btn__accept__call").click(function () {

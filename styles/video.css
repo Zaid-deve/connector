@@ -1,0 +1,33 @@
+#videoContainer {
+    overflow: hidden;
+    position: relative;
+    background: #f0f0f0;
+}
+
+
+.remote-stream-container video,
+.local-stream-container video {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.local-stream-container {
+    height: 150px;
+    width: 240px;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all .22s ease;
+}
+
+.local-stream-container.shrink {
+    height: 100px;
+    width: 150px;
+}
+
+.waiting-box {
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+}

@@ -57,12 +57,17 @@ body {
 }
 
 .popup-header .btn-back{
-    height: 38px;
-    width: 38px;
-    line-height: 38px;
-    background-color: var(--color-light);
+    height: 42px;
+    width: 42px;
+    line-height: 42px;
+    background: #fff;
 }
 
 .popup-header .btn-back  i{
-    font-size: 1.2rem;
+    font-size: 1.5rem;
+    font-weight: 100 !important;
+}
+
+#saveCallBtn{
+    background: var(--color-primary);
 }

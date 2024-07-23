@@ -1,7 +1,15 @@
-
 <?php
+include "php/config.php";
+include "includes/head.php"
+?>
+<link rel="stylesheet" href="styles/popups.css">
+</head>
 
-$array = [];
-$array['ancd'] = ['con' => [], 'st' => 1];
-$array['vvf'] = ['con' => 13131, 'st' => 13131];
-print_r($array);
+<body>
+    <?php
+    $userId = 10;
+    include "includes/popups.php"
+    ?>
+</body>
+
+</html>

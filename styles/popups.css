@@ -4,13 +4,24 @@ POPUP WINDOWS
 ================================
 */
 
-.popup-container
-{
-    z-index: 999;
-    background: var(--color-light-30);
+.popup-container {
+    z-index: 1030;
 }
 
-.popup-container .popup{
+.popup-container .popup {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: var(--color-light-30);
+    display: none;
+    padding: 16px;
+}
+
+.popup-container .popup.show {
+    display: flex;
+}
+
+.popup .popup-card {
     margin: auto;
     max-width: 420px;
     width: 100%;
@@ -22,7 +33,7 @@ POPUP WINDOWS
 .popup .popup-header {
     padding: 16px 20px;
     line-height: 20px;
-    background: rgba(0,0,0,0.04);
+    background: rgba(0, 0, 0, 0.04);
 }
 
 .popup-header h3 {
@@ -30,62 +41,88 @@ POPUP WINDOWS
     font-weight: 500;
 }
 
-.popup-header small{
+.popup-header small {
     font-weight: 300;
     opacity: .7;
 }
 
-.popup .popup-body{
+.popup .popup-body {
     padding: 16px 20px;
 }
 
-.popup .field{
-    border: 1px solid #c7c7c7;
-    border-radius: 4px;
+.popup-body .field {
+    border-bottom: 2px solid #999898
 }
 
-.field i{
-    padding-inline: 14px 0;
+.popup-body .field i {
     font-size: 1.1em;
 }
 
-.field .form-control{
-    padding-block:8px;
+.popup-body .field .form-control {
+    padding-block: 8px;
+    background: transparent;
 }
 
-.field-text{
+.popup-body .field-text {
     font-weight: 300;
-    line-height: 16px;
 }
 
-.__user__profile__err {
+.popup-body .__user__profile__err {
     line-height: 14px;
     font-weight: 300;
 }
 
-.popup-accept-req-body #__btn__reject__req {
+.popup-body .popup-accept-req-body #__btn__reject__req {
     border: 1px solid;
     color: (--color-red);
     font-weight: 300;
 }
 
-.popup-header-icon{
+.popup-header-icon {
     height: 50px;
     width: 50px;
     line-height: 50px;
     text-align: center;
-    background: var(--color-dark);
+    background: var(--color-light-30);
     margin: auto;
-    border-radius:150px;
+    border-radius: 150px;
 }
 
-.popup-header-icon i{
-    color: #fff;
+.popup-header-icon i {
+    color: var(--color-light);
     font-weight: 900;
     font-size: 1.6em;
 }
-.popup-inc-body #__btn__reject__call{
+
+.popup-inc-body #__btn__reject__call {
     color: var(--color-red) !important;
     border: 1px solid !important;
     font-weight: 300;
+}
+
+.popup-make-call-btns .btn:nth-child(2) {
+    background: var(--color-dark);
+}
+
+.popup-make-call-btns .btn:nth-child(1) {
+    border: 1px solid var(--color-success);
+    transition: all .22s ease;
+}
+
+.popup-make-call-btns .btn:nth-child(1) :where(i, span) {
+    color: var(--color-success);
+}
+
+.popup-make-call-btns .btn:nth-child(1):hover {
+    background-color: var(--color-success);
+}
+
+.popup-make-call-btns .btn:nth-child(1):hover :where(i, span) {
+    color: var(--color-light);
+}
+
+.popup-body .__preview__imgsrc{
+    cursor: pointer;
+    border: 2px solid var(--color-red);
+    padding: 2px;
 }

@@ -43,3 +43,22 @@ function formatTime(ms) {
     }
     return `${formattedMinutes}:${formattedSeconds}`;
 }
+
+function getParam(param) {
+    const params = new URLSearchParams(location.search);
+
+    if (param) {
+        return params.get(param)
+    }
+
+    return params;
+}
+
+async function hasPerm(name) {
+    const permissionStatus = await navigator.permissions.query({ name });
+    return permissionStatus.state === 'granted'
+}
+
+function removeParam(param = '*') {
+    console.log(param)
+}

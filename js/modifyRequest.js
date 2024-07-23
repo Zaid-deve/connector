@@ -1,20 +1,25 @@
-function modifyRequest(reqInfo = {}, reqNode) {
+function modifyRequest(reqInfo = {}) {
     if (!reqInfo.username) return;
 
-    $.post('../php/modifyRequest.php', { type:reqInfo.type, username: reqInfo.username }, function (resp) {
+    $.post('../php/modifyRequest.php', { type: reqInfo.type, username: reqInfo.username }, function (resp) {
         const r = JSON.parse(resp);
 
         if (r.Success) {
-            if (reqNode) reqNode.remove();
             closePopup('popup-accept-req');
+            $("#__btn__reject__req,#__btn__accept__req").prop('disabled', false)
 
             if (reqInfo.type == 'accept') {
-                let output = `<li class='list-group-item border-0 rounded-0 friend-list-item py-3'>
+                let peer = reqInfo.peer,
+                    name = reqInfo.name,
+                    username = reqInfo.username,
+                    profile = reqInfo.profile;
+
+                let output = `<li class='list-group-item border-0 rounded-0 friend-list-item py-3' oncontextmenu='toggleContextMenu(event)' data-username='${peer}' data-isstar='0' data-isblocked='0' onclick=\"previewCallOptions('${peer}','${username}', '${name}', '${profile}')\">
                                   <div class='d-flex align-items-center gap-2'>
-                                      <img src='${reqInfo.profile}' alt='#' class='rounded-circle img-cover flex-shrink-0 friend-profile-img' height='46' width='46'>
+                                      <img src='${profile}' alt='#' class='rounded-circle img-cover flex-shrink-0 friend-profile-img' height='46' width='46'>
                                       <div class='friend-info flex-shrink-0'>
-                                          <div class='fw-bold'>@${reqInfo.username}</div>
-                                          <small class='text-muted fw-light'>${reqInfo.name}</small>
+                                          <div class='fw-bold'>@${username}</div>
+                                          <small class='text-muted fw-light'>${name}</small>
                                       </div>
                                       <div class='ms-auto d-none'>
                                           <small class='text-success'>online</small>
@@ -28,6 +33,7 @@ function modifyRequest(reqInfo = {}, reqNode) {
                     $(".friends-list-outer .friends-list").prepend(output);
                 }
             }
+            return true;
         }
 
         if (r.Err) {
@@ -36,8 +42,9 @@ function modifyRequest(reqInfo = {}, reqNode) {
                 return;
             } else {
                 throwErr(r.Err);
+                return;
             }
         }
-        $("#__btn__reject__req,#__btn__accept__req").prop('disabled', false)
     })
+    return true;
 }
