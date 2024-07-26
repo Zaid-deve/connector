@@ -12,7 +12,7 @@
 * License
 
 ## **Introduction**
-Welcome to the connector Name documentation. This project is a comprehensive WebRTC-based application enabling end-to-end audio and video calls, user management, and interactions without server interruptions. Users can save their recordings, create unique usernames, search for other users, send requests, block users, and manage close friends.
+Welcome to the connector documentation. This project is a comprehensive WebRTC-based application enabling end-to-end audio and video calls, user management, and interactions without server interruptions. Users can save their recordings, create unique usernames, search for other users, send requests, block users, and manage close friends.
 
 ## **Features**
 
