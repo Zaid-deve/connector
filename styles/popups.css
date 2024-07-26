@@ -5,7 +5,7 @@ POPUP WINDOWS
 */
 
 .popup-container {
-    z-index: 1030;
+    z-index: 1054;
 }
 
 .popup-container .popup {
@@ -83,9 +83,13 @@ POPUP WINDOWS
     width: 50px;
     line-height: 50px;
     text-align: center;
-    background: var(--color-light-30);
+    background: var(--color-success);
     margin: auto;
     border-radius: 150px;
+}
+
+.popup-header-title{
+    color: var(--color-success);
 }
 
 .popup-header-icon i {

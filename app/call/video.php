@@ -46,7 +46,10 @@ require_once "../../includes/head.php";
 <body>
 
     <!-- BODY -->
-    <?php require_once "../../includes/alert.php" ?>
+    <?php 
+    include "../../includes/loader.php";
+    require_once "../../includes/alert.php"
+     ?>
     <div class="container-fluid p-0 ui-box">
         <div class="d-flex flex-column" style="height: 100vh;">
             <?php require_once "../../includes/callHeader.php" ?>

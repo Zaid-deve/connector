@@ -8,14 +8,8 @@
     height: var(--header-height);
 }
 
-/* .brand .brand-text {
-    font-size: clamp(2rem, 3.5vw, 2.5rem);
-    font-family: var(--font-logo);
-    line-height: 48px;
-} */
-
-.header #appLogo{
-    height: 50px;
+.app-logo .app-logo-src {
+    width: 200px;
 }
 
 .requests-menu {
@@ -48,35 +42,38 @@
 }
 
 .header-btn {
-    height:36px;
-    width:36px;
+    height: 36px;
+    width: 36px;
     padding: 0;
     border-radius: 150px;
 }
-.header-btn i{
+
+.header-btn i {
     font-weight: 100 !important;
     font-size: 1.4rem;
 }
-.header-btn:hover{
+
+.header-btn:hover {
     background: #f7f7f7;
 }
 
-.btn-profile-link{
+.btn-profile-link {
     border: 2px solid var(--color-red);
     height: 46px;
     width: 46px;
     padding: 2px !important;
 }
-.btn-profile-link img 
-{
+
+.btn-profile-link img {
     height: 100%;
     width: 100%;
 }
+
 .requests-menu-container.show {
     transform: scale(1);
 }
 
-.pending-req-badge{
+.pending-req-badge {
     background: var(--color-primary);
     font-size: .92rem;
 }
@@ -95,17 +92,11 @@
         padding: 10px;
     }
 
-    .requests-menu-container .requests-menu{
+    .requests-menu-container .requests-menu {
         width: 100%;
     }
 
-    #appLogo{
-        height: 36px !important;
-    }
-}
-
-@media (max-width:360px) {
-    #appLogo{
-        height: 32px !important;
+    .app-logo .app-logo-src{
+        width: 160px;
     }
 }

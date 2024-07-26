@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST['username'])) {
         $remoteUserId = $user->getUser($conn, $username, ['user_id']);
 
         if ($remoteUserId) {
-            $stmt = $conn->prepare("UPDATE user_friends SET is_star = CASE is_star WHEN 0 THEN 1 ELSE 0 END WHERE
+            $stmt = $conn->prepare("UPDATE user_friends SET is_star = CASE is_star WHEN 1 THEN 0 ELSE 1 END WHERE
                                    (sender_user_id = ? AND recipient_user_id = ?) OR (recipient_user_id = ? AND sender_user_id = ?)");
             $stmt->execute([$uid, $remoteUserId, $uid, $remoteUserId]);
             if ($stmt) {

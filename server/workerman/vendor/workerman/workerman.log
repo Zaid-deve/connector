@@ -172,3 +172,14 @@ Stack trace:
 #4 C:\xampp\htdocs\connector\server\workerman\vendor\workerman\workerman\Worker.php(560): Workerman\Worker::forkWorkers()
 #5 C:\xampp\htdocs\connector\server\server.php(42): Workerman\Worker::runAll()
 #6 {main}
+2024-07-25 08:50:18 pid:1 ArgumentCountError: print_r() expects at most 2 arguments, 3 given in C:\xampp\htdocs\connector\server\component.php:147
+Stack trace:
+#0 C:\xampp\htdocs\connector\server\component.php(147): print_r(1721890257859, 1721890218, 1720168367641)
+#1 C:\xampp\htdocs\connector\server\component.php(96): sendIncommings('dGVzdGFjYw==')
+#2 C:\xampp\htdocs\connector\server\workerman\vendor\workerman\workerman\Connection\TcpConnection.php(646): {closure}(Object(Workerman\Connection\TcpConnection), '{"type":"offer"...')
+#3 C:\xampp\htdocs\connector\server\workerman\vendor\workerman\workerman\Events\Select.php(311): Workerman\Connection\TcpConnection->baseRead(Resource id #28)
+#4 C:\xampp\htdocs\connector\server\workerman\vendor\workerman\workerman\Worker.php(1488): Workerman\Events\Select->loop()
+#5 C:\xampp\htdocs\connector\server\workerman\vendor\workerman\workerman\Worker.php(1405): Workerman\Worker::forkWorkersForWindows()
+#6 C:\xampp\htdocs\connector\server\workerman\vendor\workerman\workerman\Worker.php(560): Workerman\Worker::forkWorkers()
+#7 C:\xampp\htdocs\connector\server\server.php(42): Workerman\Worker::runAll()
+#8 {main}

@@ -97,7 +97,7 @@ $(function () {
                 }
 
                 if (r.ProfileErr) {
-                    profileErr.text(profileErr).addClass('text-danger')
+                    profileErr.text(r.ProfileErr).addClass('text-danger')
                 }
 
                 if (r.Err) {

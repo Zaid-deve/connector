@@ -2,7 +2,9 @@
 
 session_start();
 require_once "functions.php";
+require_once "../user/user.php";
 
+$user = new User();
 $uid = getUserId();
 $response = [
     'Success' => false,
@@ -12,7 +14,7 @@ $response = [
     'Err' => null
 ];
 
-if (!$uid) {
+if (!$user->isUserLogedIn()) {
     $response['Err'] = "LOGIN_FAILED";
     echo json_encode($response);
     die();
@@ -24,15 +26,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST['username'])) {
     // data
     $username = htmlentities(trim($_POST['username']));
     $name = htmlentities(trim($_POST['name']));
-
-
+    
     $profileImgValid = true;
     if (isset($_FILES['profile'])) {
         $profile = $_FILES['profile'];
 
         if ($profile['error'] === UPLOAD_ERR_OK) {
             $type = pathinfo($profile['name'], PATHINFO_EXTENSION);
-            $formats = ['png', 'jpeg', 'jpg', 'webp', 'gif'];
+            $formats = ['png', 'jpg', 'jpeg', 'webp', 'gif'];
             if (!array_search($type, $formats)) {
                 $profileImgValid = true;
                 $response['ProfileErr'] = 'Invalid Image, Image Should Be ' . implode(',', $formats);

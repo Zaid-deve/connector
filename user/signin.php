@@ -1,6 +1,7 @@
 <?php
 
 require_once "../php/config.php";
+require_once "../db/conn.php";
 require_once "user.php";
 $user = new User();
 if ($user->isUserLogedIn()) {
@@ -14,14 +15,17 @@ require_once "../includes/head.php";
 
 ?>
 
-<link rel="stylesheet" href="../styles/signin.css">
+<link rel="stylesheet" href="../styles/form.css">
 </head>
 
 <body>
 
     <!-- BODY -->
-    <?php require_once "../includes/header.php" ?>
-    <?php require_once "../includes/alert.php" ?>
+    <?php
+    include "../includes/loader.php";
+    require_once "../includes/header.php";
+    require_once "../includes/alert.php";
+    ?>
     <main>
         <div class="container vh-100 d-flex">
             <div class="m-auto form-container">
@@ -41,7 +45,7 @@ require_once "../includes/head.php";
                             <div class="err text-danger"></div>
                         </div>
                         <button class="btn w-100 py-2 mt-3 rounded-5" type="submit" id="submit" disabled>
-                            <span class="text-light fw-bold btn-text">Continue</span> 
+                            <span class="text-light fw-bold btn-text">Continue</span>
                             <i class="ri-arrow-right-line ms-1 text-light"></i>
                         </button>
                     </div>

@@ -118,6 +118,7 @@ function initCall(destination) {
     peer.addEventListener('iceconnectionstatechange', handleIceConnectionState);
 
     callInitTime = Date.now();
+    startTimeout(callInitTime);
     return peer;
 }
 
@@ -169,7 +170,6 @@ async function initOffer(constraints, isAnswerer = false) {
     if (peer) {
         localStream = await getMedia(peer, constraints);
         if (localStream == 'PERM_ERR') {
-            // handlePermDenied();
             localStream = null;
             alert('please enable your device ' + constraints.audio ? 'microphone' : 'camera' + ' to connect to the call');
             return false;
@@ -179,6 +179,7 @@ async function initOffer(constraints, isAnswerer = false) {
             let config = {}, offer;
             config.offerToReceiveAudio = constraints.audio;
             config.offerToReceiveVideo = constraints.video;
+            config.isCaller = !isAnswerer
 
             if (isAnswerer) {
                 offer = await createAnswer(callConfig, config);

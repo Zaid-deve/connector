@@ -11,7 +11,7 @@
                     <div class="d-flex gap-3 align-items-center">
                         <div class="d-flex align-items-center flex-column">
                             <label for="__user__profile__inp">
-                                <img src="../images/main-qimg-6d72b77c81c9841bd98fc806d702e859-lq.jfif" alt="user profile" class="rounded-circle img-cover __preview__imgsrc" height="60" width="60">
+                                <img src="<?php echo $baseurl ?>/images/main-qimg-6d72b77c81c9841bd98fc806d702e859-lq.jfif" alt="user profile" class="rounded-circle img-cover __preview__imgsrc" height="60" width="60">
                             </label>
                             <small class="text-danger fw-light text-center mt-2 __user__profile__err"></small>
                             <input type="file" id="__user__profile__inp" accept="image/*" hidden>
@@ -75,7 +75,7 @@
             </div>
         </div>
 
-        <!-- accept request -->
+        <!-- make a call request -->
         <div class="popup popup-dismisable popup-make-call h-100 w-100">
             <div class="popup-card m-auto">
                 <div class="popup-header popup-make-call-header text-center">
@@ -86,7 +86,7 @@
                 </div>
                 <div class="popup-body popup-make-call-body">
                     <div class='d-flex align-items-center gap-2'>
-                        <img src='../images/main-qimg-6d72b77c81c9841bd98fc806d702e859-lq.jfif' alt='#' class='rounded-circle img-cover flex-shrink-0 friend-profile-img make-call-profile' height='46' width='46'>
+                        <img src='<?php echo $baseurl ?>/images/main-qimg-6d72b77c81c9841bd98fc806d702e859-lq.jfif' alt='#' class='rounded-circle img-cover flex-shrink-0 friend-profile-img make-call-profile' height='46' width='46'>
                         <div class='friend-info flex-shrink-0'>
                             <div class='fw-bold remote-username'>unknown</div>
                             <small class='text-muted fw-light remote-name'></small>
@@ -111,7 +111,7 @@
 
 
 
-        <!-- popup accept req -->
+        <!-- popup accept call -->
         <div class="popup popup-inc-call h-100 w-100">
             <div class="popup-card m-auto">
                 <div class="popup-header popup-inc-call-header text-center">
@@ -123,7 +123,7 @@
                 </div>
                 <div class="popup-body popup-inc-body">
                     <div class='d-flex align-items-center gap-2'>
-                        <img src='../images/main-qimg-6d72b77c81c9841bd98fc806d702e859-lq.jfif' alt='#' class='rounded-circle img-cover flex-shrink-0 friend-profile-img inc-profile' height='46' width='46'>
+                        <img src='<?php echo $baseurl ?>/images/main-qimg-6d72b77c81c9841bd98fc806d702e859-lq.jfif' alt='#' class='rounded-circle img-cover flex-shrink-0 friend-profile-img inc-profile' height='46' width='46'>
                         <div class='friend-info flex-shrink-0'>
                             <div class='fw-bold inc-username'></div>
                             <small class='text-muted fw-light inc-name'></small>
@@ -145,7 +145,7 @@
         <div class="popup popup-dismisable popup-connect-error h-100 w-100">
             <div class="popup-card m-auto">
                 <div class="popup-header popup-connect-error">
-                    <h3>Connection Error</h3>
+                    <h3 class="text-danger">Connection Error</h3>
                     <small>something went wrong !</small>
                 </div>
                 <div class="popup-body popup-connect-error-body">
@@ -155,6 +155,7 @@
                         <li>reload the page and try again</li>
                         <li>report this problem</li>
                     </ul>
+                    <button class="btn border-0 mt-3 mx-auto d-block text-primary fw-normal" onclick="location.reload()">reload page</button>
                 </div>
             </div>
         </div>

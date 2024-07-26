@@ -1,3 +1,16 @@
+async function sendFriendRequest(userId) {
+    let rt;
+    try {
+        await $.post(`${ORIGIN}/php/sendFriendRequest.php`, { userId }, function (resp) {
+            const r = JSON.parse(resp)
+            if (r.Success) {
+                rt = true
+            } else rt = r.IdErr || r.Err
+        })
+    } catch { rt = false }
+    return rt;
+}
+
 $(function () {
     const friendId = $("#__friend__id__inp"),
         sendReqbtn = $("#__btn__sendreq"),
@@ -18,23 +31,11 @@ $(function () {
         friendId.prop('readonly', true);
         sendReqbtn.prop('disabled', true);
 
-        try {
-            await $.post("../php/handleRequest.php", { userId }, function (resp) {
-                const r = JSON.parse(resp);
-                if (r.Success) {
-                    closePopup('popup-add-friend')
-                    return;
-                }
-
-                if (r.IdErr) {
-                    friendIdErr.text(r.IdErr)
-                }
-                else {
-                    throwErr(r.Err || 'Something Went Wrong !');
-                }
-            })
-        } catch (e) {
-            throwErr('Something Went Wrong');
+        let reqStatus = await sendFriendRequest(userId);
+        if (reqStatus === true) {
+            closePopup();
+        } else {
+            friendIdErr.text(reqStatus || 'Someting Went Wrong')
         }
 
         friendId.prop('readonly', false);

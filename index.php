@@ -19,10 +19,11 @@ require_once "./includes/head.php";
 <body>
 
     <?php
-    
-    $hideProfile = true;
-    include "includes/header.php";
-    
+
+    $hideRightHeader = true;
+    include "includes/loader.php";
+    require_once "includes/header.php";
+
     ?>
 
     <main>
@@ -32,7 +33,7 @@ require_once "./includes/head.php";
                 <div class="htext text-center text-md-start">
                     <h1 class="fw-bolder">Welcome to <strong>connector</strong></h1>
                     <p class="text-muted mt-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. <br> Aperiam autem illo quasi magni saepe nobis dolorem minima ullam a enim?</p>
-                    <?php if(!$user->isUserLogedIn()){
+                    <?php if (!$user->isUserLogedIn()) {
                         echo "<a href='user/signin.php' class='btn fw-bold rounded-5 px-5 py-2 text-light'>Login</a>";
                     } else {
                         echo "<a href='app/chat.php' class='btn fw-bold rounded-5 px-5 py-2 text-light'>Start A Call</a>";

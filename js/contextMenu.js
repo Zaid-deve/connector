@@ -30,8 +30,8 @@ $(function () {
         const coords = getClickCoords(e);
         menu.css({ top: `${coords.y}px`, left: `${coords.x}px` });
         // get current target username
-        ctElm = $(this)
-        ctTarget = ctElm.data('username');
+        ctElm = $(e.target).closest('.friend-list-item')
+        ctTarget = ctElm.data('enc-username');
         isStar = ctElm.data('isstar');
         isBlocked = ctElm.data('isblocked');
 
@@ -48,11 +48,11 @@ $(function () {
         }
     };
 
-    $(".context-menu-delete-btn").click(function () {
-        menu.addClass('d-none');
+    $(".context-menu-delete-btn").click(async function () {
         if (ctTarget) {
-            if (deleteFriend(ctTarget)) {
+            if (await deleteFriend(ctTarget)) {
                 if (ctElm) {
+                    alert('elm deleted');
                     ctElm.remove();
                     closeMenu();
                     if (!$('.friends-list').children().length) {
@@ -62,13 +62,15 @@ $(function () {
                                                  </div>`)
                     }
                 }
+            } else {
+                throwErr('failed to delete friend');
             }
         }
     })
 
-    $(".context-menu-star-btn").click(function () {
+    $(".context-menu-star-btn").click(async function () {
         if (ctTarget) {
-            if (addStarFriend(ctTarget)) {
+            if (await addStarFriend(ctTarget)) {
                 if (ctElm) {
                     let starFriendicon;
                     if (isStar) {
@@ -84,13 +86,15 @@ $(function () {
                     }
                 }
                 closeMenu();
+            } else {
+                throwErr('failed to mark friend as star');
             }
         }
     })
 
-    $(".context-menu-block-btn").click(function () {
+    $(".context-menu-block-btn").click(async function () {
         if (ctTarget) {
-            if (blockFriend(ctTarget)) {
+            if (await blockFriend(ctTarget)) {
                 if (isBlocked) {
                     ctElm.data('isblocked', 0);
                     ctElm.find('.friend-username').removeClass('text-danger').find('i').remove();
@@ -99,6 +103,8 @@ $(function () {
                     ctElm.find('.friend-username').addClass('text-danger').prepend('<i class="ri-prohibited-2-line"></i>')
                 }
                 closeMenu()
+            }  else {
+                throwErr('failed to block friend');
             }
         }
 

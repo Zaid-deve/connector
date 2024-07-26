@@ -57,16 +57,6 @@ class User
         return false;
     }
 
-    // function getProfileUri($profile)
-    // {
-    //     $rootUri = $_SERVER['DOCUMENT_ROOT'] . '/connector/profiles/' . basename($profile);
-    //     $uri = "https://{$_SERVER['SERVER_NAME']}/connector/profiles/" . basename($profile);
-    //     if (!$profile || !file_exists($rootUri)) {
-    //         $uri = "https://{$_SERVER['SERVER_NAME']}/connector/images/main-qimg-6d72b77c81c9841bd98fc806d702e859-lq.jfif";
-    //     }
-    //     return $uri;
-    // }
-
     function isUserLogedIn($redirect = false)
     {
         if (!$this->getUserId()) {
@@ -83,9 +73,19 @@ class User
     {
         $rootUri = $_SERVER['DOCUMENT_ROOT'] . '/connector/profiles/' . basename($profile);
         $uri = "https://{$_SERVER['SERVER_NAME']}/connector/profiles/" . basename($profile);
-        if (!$profile || !file_exists($rootUri)) {
+        if (empty($profile) || !file_exists($rootUri)) {
             $uri = "https://{$_SERVER['SERVER_NAME']}/connector/images/main-qimg-6d72b77c81c9841bd98fc806d702e859-lq.jfif";
         }
         return $uri;
+    }
+
+    function logout()
+    {
+        session_unset();
+        session_destroy();
+        if (isset($_COOKIE['user_id'])) {
+            setcookie('user_id', '', time() - 1, '/');
+        }
+        return true;
     }
 }

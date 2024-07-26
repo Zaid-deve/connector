@@ -1,24 +1,20 @@
-function startTimeout(max) {
-    if (isCallEnded || ['connected', 'connecting', 'reconnecting'].includes(callStatus)) {
-        return;
-    }
+function startTimeout(init) {
+    let canHangup = !['connecting', 'reconnecting', 'connected'].includes(callStatus);
 
-    if (!max) {
-        max = callInitTime + 40000;
-    }
+    const curr = Date.now(),
+        gvn = init + 40000,
+        diff = Math.floor(gvn - curr);
 
-    let callTimeout = Math.floor(max - Date.now());
-    if (callTimeout > 0) {
+    if (diff > 0) {
         setTimeout(() => {
-            startTimeout(max);
+            startTimeout(init);
         }, 1000);
     } else {
-        if (!['connected', 'connecting', 'reconnecting'].includes(callStatus)) {
+        if (canHangup) {
             sendHangupReq();
-            hangupCall();
+            hangupCall()
         }
     }
-    console.log(callTimeout)
 }
 
 function showCallTime(init) {
@@ -96,6 +92,8 @@ function hangupCall() {
         stopRecorder();
     }
 
+    removeParam('type');
+
     $('body').append(`<script src="${ORIGIN}/js/notifyCall.js"></script>`)
 }
 
@@ -154,13 +152,13 @@ async function messageHandler(e) {
     if (type == 'offer') {
         if (data.sdp) {
             await peer.setRemoteDescription(new RTCSessionDescription(data));
-            const stream = await initOffer({ audio: true, video: true }, !isCaller);
+            const stream = await initOffer({ audio: true, video: isVideoCall }, !isCaller);
             if (stream && isVideoCall) {
                 localVideo.srcObject = stream;
                 $('.local-stream-container').html(localVideo)
             }
         } else {
-            alert('error adding remote description');
+            throwErr('Failed to add caller');
         }
         return;
     }
@@ -178,7 +176,7 @@ async function messageHandler(e) {
                 }
             })
         } else {
-            alert('error adding remote ice candidates');
+            throwErr('Failed to connect caller');
         }
         return;
     }

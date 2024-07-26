@@ -20,7 +20,7 @@
     position: relative;
 }
 
-.friends-list .friend-list-item::after{
+.friends-list .friend-list-item::after {
     content: '';
     position: absolute;
     left: 5%;
@@ -59,16 +59,23 @@
 
 .chat-context-menu .list-group-item {
     border: none !important;
+    color: var(--color-light);
+}
+
+.chat-context-menu .list-group-item:not(:nth-child(3)) {
+    border-bottom: 1px solid var(--color-light) !important;
+}
+
+.chat-context-menu .list-group-item:nth-child(3) i {
+    color: var(--color-success);
 }
 
 .chat-context-icon i {
-    font-size: 1.3rem;
-    font-weight: 100 !important;
+    font-size: 1.1rem;
 }
 
 .chat-context-text {
-    font-size: .98rem;
-    font-weight: 500;
+    font-size: .90rem;
 }
 
 .chat-context-menu .list-group-item {

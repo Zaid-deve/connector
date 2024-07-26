@@ -7,12 +7,22 @@ function showPopup(target) {
     }
 }
 
-function closePopup() {
-    $('.popup-container .popup').removeClass('show')
-    $('.popup-container').addClass('d-none');
+function closePopup(target) {
+
+    if (target) {
+        $(`.popup-container .popup.${target}`).removeClass('show');
+    } else {
+        $('.popup-container .popup').removeClass('show');
+    }
+
+    let vpopups = $('.popup-container .popup.show')
+    if (!vpopups.length) {
+        $('.popup-container').addClass('d-none')
+    }
+
 }
 
-function previewCallOptions(peer, username, name, profile) {
+function showRemoteCaller(ev) {
     if (wss && wss.readyState == 0) {
         return;
     }
@@ -22,10 +32,28 @@ function previewCallOptions(peer, username, name, profile) {
         return;
     }
 
+    // get data
+    const target = $(ev.target).closest('.friend-list-item');
+    if (!target.length) {
+        return;
+    }
+
+    const peer = target.data('enc-username'),
+        username = target.data('username'),
+        name = target.data('name'),
+        profile = target.data('profile'),
+        isFriend = target.data('isfriend');
+
+    if (!isFriend) {
+        return;
+    }
+
     if (peer) {
         showPopup('popup-make-call');
         $(".remote-username").text(`@${username}`);
         $(".remote-name").text(name);
+        $(".make-call-profile")[0].src = profile;
+
         $("#__btn__voice__call").click(function () {
             location.href = `https://${location.host}/connector/app/call/voice.php?userId=${peer}`;
         })

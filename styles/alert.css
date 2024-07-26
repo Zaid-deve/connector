@@ -4,19 +4,18 @@ PAGE ALERT
 ===============================
 */
 
-.page-alert {
+.page-alert-container {
     top: var(--header-height);
     right: 10px;
-    z-index: 1024 !important;
-    box-shadow: 0 0 10px #eee;
-    transform: scale(0);
-    transform-origin: right top;
-    transition: all .2s ease;
+    z-index: 1050 !important;
 }
 
-.page-alert.show{
-    transform: scale(1);
+.page-alert {
+    box-shadow: 0 0 10px #eee;
+    max-width: 320px;
+    width: 100%;
 }
+
 .page-alert .alert-close {
     height: 35px;
     width: 35px;

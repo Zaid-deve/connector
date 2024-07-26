@@ -1,0 +1,72 @@
+.main-row {
+    padding-top: var(--header-height) !important;
+    overflow: scroll;
+}
+
+.profile-options {
+    border-radius: 0;
+}
+
+.profile-options .list-group-item {
+    cursor: pointer;
+}
+
+.profile-options .list-group-item>i {
+    font-size: 1.4rem;
+    font-weight: 100 !important;
+}
+
+.profile-options .list-group-item .badge {
+    background: var(--color-primary) !important;
+}
+
+.profile-options .list-group-item:is(.active, :hover) {
+    background: var(--color-light);
+}
+
+.profile-info {
+    line-height: 18px;
+}
+
+.profile-info .profile-name {
+    font-size: .75em;
+}
+
+.btn-profile-menu-toggler {
+    height: 38px;
+    aspect-ratio: 1/1;
+    background: var(--color-light);
+    padding: 0 !important;
+}
+
+.profile-float-options {
+    width: 220px;
+    border-radius: 8px;
+    box-shadow: 0 0 5px var(--color-light);
+}
+
+.__preview__imgsrc {
+    cursor: pointer;
+    border: 2px solid var(--color-red);
+    padding: 2px;
+    height: 80px;
+    aspect-ratio: 1/1;
+}
+
+.profile-change-icon {
+    bottom: 13px;
+    right: -7px;
+    background: var(--color-primary);
+    height: 28px;
+    width: 28px;
+    text-align: center;
+    line-height: 28px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.profile-change-icon i{
+    font-size: .9rem;
+    color: var(--color-light);
+    font-weight: 100 !important;
+}

@@ -12,14 +12,28 @@ const isPassValid = (val) => {
 
 const throwErr = (msg, strict = false) => {
     if (!msg) return;
-    $(".page-alert").removeClass('d-none')
-    $(".page-alert").find('.alert-text').text(msg)
+
+    // Create a unique ID for the new alert
+    const alertId = `alert-${Date.now()}`;
+
+    // Prepend a new alert with the unique ID
+    $(".page-alert-container").prepend(`
+    <div id="${alertId}" class="alert page-alert bg-white d-flex align-items-center m-0">
+        <i class="fa-solid fa-triangle-exclamation tdanger"></i>
+        <span class="alert-text tdanger tnormal ps-2 pe-5">${msg || 'Something Went Wrong'}</span>
+        <button class="btn p-0 alert-close border-0 ms-auto" onclick="this.closest('.alert').remove()">
+            <i class="fa-solid fa-close tdanger"></i>
+        </button>
+    </div>
+    `);
+
     if (!strict) {
         setTimeout(() => {
-            $(".page-alert").addClass('d-none')
-        }, 4000);
+            $(`#${alertId}`)?.remove();
+        }, 3000);
     }
 }
+
 
 function openhomenav() {
     const left = $(".home-row-left"),
@@ -48,6 +62,7 @@ function getParam(param) {
     const params = new URLSearchParams(location.search);
 
     if (param) {
+
         return params.get(param)
     }
 
@@ -59,6 +74,12 @@ async function hasPerm(name) {
     return permissionStatus.state === 'granted'
 }
 
-function removeParam(param = '*') {
-    console.log(param)
+function removeParam(param) {
+    const url = new URL(window.location),
+        searchParams = url.searchParams;
+    searchParams.delete(param);
+
+    let uri = url.pathname + url.search
+    history.replaceState(null, '', uri);
+    return uri;
 }

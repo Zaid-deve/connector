@@ -56,18 +56,12 @@ $(function () {
             handleCallEnded();
         }
 
-        function getUserData(user_name, callback) {
-            if (!user_name) return;
-            let data = false;
-
-            $.post(`${ORIGIN}/php/getUserInfo.php`, { user_name }, function (resp) {
-                const r = JSON.parse(resp)
-                if (r.Success) {
-                    data = r.Data;
-                }
-
-                callback(data);
-            }).fail(() => callback(data))
+        function getUserData(username, callback) {
+            if (!username) return;
+            $.post(`${ORIGIN}/php/getUserInfo.php`, { username }, function (resp) {
+                const r = JSON.parse(resp);
+                callback(r.Data || [], r.Success ? null : r.Err);
+            }).fail(() => callback(null, 'Something Went Wrong'));
         }
 
         wss.onmessage = function (e) {
@@ -87,18 +81,20 @@ $(function () {
                     callExpires = parseInt(data.expires),
                     callUri = `${ORIGIN}/app/call/voice.php?userId=${from}&type=answer`
 
-                getUserData(from, function (userData) {
+                getUserData(from, function (userData, err) {
                     callStatus = 'ringing';
                     ring = createRing();
                     if (ring) ring.play()
                     showPopup('popup-inc-call');
-
+                
                     // show user info
-                    if (userData) {
+                    if (userData.username) {
                         $('.inc-profile').attr('src', userData.profile);
-                        $('.inc-username').text(userData.user_name)
+                        $('.inc-username').text(userData.username)
                         $('.inc-name').text(userData.name)
-                        $('.inc-call-msg').text(`incomming ${callType} from ${userData.name || userData.user_name}`)
+                        $('.inc-call-msg').text(`incomming ${callType} call from ${userData.name || userData.username}`)
+                    } else {
+                        $('.inc-call-msg').text(err);
                     }
 
                     handleTimeLeft(callExpires / 1000);

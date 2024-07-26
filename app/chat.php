@@ -22,6 +22,7 @@ require_once $root . "includes/head.php";
 
     <!-- BODY -->
     <?php
+    include "../includes/loader.php";
 
     // get user public id
     $userId = $userName = $userProfile = '';
@@ -56,16 +57,16 @@ require_once $root . "includes/head.php";
                             <div class="bg-white rounded-3 py-2">
                                 <ul class="list-group rounded-0">
                                     <li class="list-group-item d-flex align-items-center gap-3 w-100 context-menu-delete-btn">
-                                        <span class="chat-context-icon"><i class="ri-user-minus-fill text-danger"></i></span>
-                                        <span class="chat-context-text text-danger">Remove Friend</span>
+                                        <span class="chat-context-icon"><i class="ri-user-4-fill"></i></span>
+                                        <span class="chat-context-text fw-normal">Remove Friend</span>
                                     </li>
                                     <li class="list-group-item d-flex align-items-center gap-3 w-100 context-menu-block-btn">
-                                        <span class="chat-context-icon"><i class="ri-prohibited-2-line text-muted"></i></span>
-                                        <span class="chat-context-text text-muted">Block Friend</span>
+                                        <span class="chat-context-icon"><i class="ri-user-forbid-fill"></i></span>
+                                        <span class="chat-context-text fw-normal">Block Friend</span>
                                     </li>
                                     <li class="list-group-item d-flex align-items-center gap-3 w-100 context-menu-star-btn">
-                                        <span class="chat-context-icon"><i class="ri-star-fill text-primary"></i></span>
-                                        <span class="chat-context-text text-primary">Mark As Star</span>
+                                        <span class="chat-context-icon"><i class="ri-star-fill"></i></span>
+                                        <span class="chat-context-text fw-normal">Mark As Star</span>
                                     </li>
                                 </ul>
                             </div>
@@ -83,7 +84,10 @@ require_once $root . "includes/head.php";
                         if ($response['Users']) {
                             echo "<ul class='list-group friends-list'>";
                             foreach ($response['Users'] as $f) {
-                                $peer = base64_encode($f['username']);
+                                $username = $f['username'];
+                                $name = $f['name'];
+                                $peer = base64_encode($username);
+                                $profile = $f['profile'];;
                                 $starFriendicon = '';
                                 $isStar = $f['isStarFriend'];
                                 $isBlocked = $f['isBlockedFriend'];
@@ -92,12 +96,12 @@ require_once $root . "includes/head.php";
                                     $starFriendicon = "<div class='star-friend-icon'> <i class='ri-star-smile-fill'></i> </div>";
                                 }
 
-                                echo "<li class='list-group-item border-0 rounded-0 friend-list-item py-3' oncontextmenu='toggleContextMenu(event)' data-username='$peer' data-isstar='$isStar' data-isblocked='$isBlocked' onclick=\"previewCallOptions('{$peer}','{$f['username']}', '{$f['name']}', '{$f['profile']}')\">
+                                echo "<li class='list-group-item border-0 rounded-0 friend-list-item py-3' oncontextmenu='toggleContextMenu(event)' data-enc-username='$peer' data-username='$username' data-name='$name' data-profile='$profile' data-isfriend='1' data-isstar='$isStar' data-isblocked='$isBlocked' onclick='showRemoteCaller(event)'>
                                           <div class='d-flex align-items-center gap-2'>
-                                              <img src='{$f['profile']}' alt='#' class='rounded-circle img-cover flex-shrink-0 friend-profile-img' height='46' width='46'>
+                                              <img src='$profile' alt='#' class='rounded-circle img-cover flex-shrink-0 friend-profile-img' height='46' width='46'>
                                               <div class='friend-info flex-shrink-0'>
-                                                  <div class='fw-bold friend-username $blockStr @{$f['username']}</div>
-                                                  <small class='text-muted fw-light'>{$f['name']}</small>
+                                                  <div class='fw-bold friend-username $blockStr @$username</div>
+                                                  <small class='text-muted fw-light'>$name</small>
                                               </div>
                                               <div class='ms-auto text-center list-item-right'>
                                                   $starFriendicon
@@ -147,7 +151,7 @@ require_once $root . "includes/head.php";
     <script src="../js/functions.js"></script>
     <script src="../js/header.js"></script>
     <script src="../js/popup.js"></script>
-    <script src="../js/contextFuntions.js"></script>
+    <script src="../js/contextFunctions.js"></script>
     <script src="../js/contextMenu.js"></script>
     <script src="../js/search.js"></script>
     <?php

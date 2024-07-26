@@ -1,10 +1,27 @@
+# Enable URL rewriting
 RewriteEngine On
 
-# Check if the request is not HTTPS
+# Redirect HTTP to HTTPS
 RewriteCond %{HTTPS} !=on
-
-# Redirect to HTTPS
 RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
-# Block access to all files except index files
-# Block access to all directories
+# Allow access to the 'connector' folder itself, but not its subdirectories
+RewriteCond %{REQUEST_URI} ^/connector/?$ [NC]
+RewriteRule ^ - [L]
+
+# Allow access to files directly under 'connector'
+RewriteCond %{REQUEST_URI} ^/connector/[^/]+$ [NC]
+RewriteRule ^ - [L]
+
+# Redirect all other directory access to a custom error page
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ /connector/error.php [R=302,L]
+
+# Custom error document
+ErrorDocument 403 /connector/error.php
+ErrorDocument 404 /connector/error.php
+
+# Deny access to the .htaccess file itself
+<Files ".htaccess">
+    Require all denied
+</Files>

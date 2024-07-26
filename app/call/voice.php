@@ -12,10 +12,6 @@ require_once "../../user/user.php";
 require_once "../../db/conn.php";
 require_once "../../php/functions.php";
 
-if (!base64_decode($peer)) {
-    $peer = base64_encode($peer);
-}
-
 // local user
 $user = new User(true);
 $uid = $user->getUserId();
@@ -25,9 +21,28 @@ if (!$localUser) {
     die("Account Configuration Error, Please Try Login Again !");
 }
 
+$qry = "SELECT u.user_id,u.user_name,u.user_cname,u.user_profile,uf.fr_id,uf.is_star,uf.is_blocked,uf.fr_timestamp FROM users u
+       LEFT JOIN user_friends uf ON 
+       (u.user_id = uf.sender_user_id AND uf.recipient_user_id = :current_user) OR 
+       (u.user_id = uf.recipient_user_id AND uf.sender_user_id = :current_user)
+       WHERE u.user_name = :remote_username";
+
 // remote user
-$data = $user->getUser($conn, $peer, ['user_name', 'user_cname', 'user_profile']);
-if ($data) {
+$stmt = $conn->prepare($qry);
+$stmt->execute([
+    ':current_user' => $uid,
+    ':remote_username' => $peer
+]);
+
+if ($stmt && $stmt->rowCount()) {
+    $data = $stmt->fetch(PDO::FETCH_ASSOC);
+    $isFriend = empty($data['fr_id']) ? false : true;
+    $isBlocked = $data['is_blocked'] == 1 ? true : false;
+    if (!$isFriend && !$isBlocked) {
+        header("Location:../");
+        die();
+    }
+
     $remoteUser = $data['user_name'];
     $remoteUserCname = $data['user_cname'];
     $remoteUserProfile = $user->getProfileUri($data['user_profile']);
@@ -45,7 +60,10 @@ require_once "../../includes/head.php";
 <body>
 
     <!-- BODY -->
-    <?php require_once "../../includes/alert.php" ?>
+    <?php
+    include "../../includes/loader.php";
+    require_once "../../includes/alert.php"
+    ?>
     <div class="container-fluid vh-100 p-0 ui-box">
         <div class="d-flex flex-column justify-content-between h-100">
             <div class="d-flex align-items-center bg-white p-2 top-controls">

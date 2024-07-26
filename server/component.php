@@ -17,7 +17,6 @@ $ws_worker->onMessage = function (TcpConnection $tcp, $msg) use (&$connections, 
     $recipent = null;
     $recipentStatus = null;
 
-
     // recipent
     if (isset($connections[$to])) {
         $recipent = $connections[$to]['connection'];
@@ -26,9 +25,21 @@ $ws_worker->onMessage = function (TcpConnection $tcp, $msg) use (&$connections, 
 
     // connection
     if ($type === 'connection') {
-        $connections[$data['userId']] = ['connection' => $tcp, 'status' => 'free'];
+        if (isset($connections[$data['userId']])) {
+            updateStatus($data['userId'], 'active', $tcp);
+        } else {
+            $connections[$data['userId']] = ['connection' => $tcp, 'status' => 'active'];
+        }
         sendIncommings($data['userId']);
         return;
+    }
+
+    // update status
+    if ($type == 'updateStatus') {
+        if (isset($connections[$data['userId']])) {
+            $status = $data['status'];
+            updateStatus($tcp, $data['userId'], $status);
+        }
     }
 
     // reconnect
@@ -53,8 +64,8 @@ $ws_worker->onMessage = function (TcpConnection $tcp, $msg) use (&$connections, 
             $connections[$from]['connection']->send(json_encode($reject));
         }
         destroyCall($from);
-        setStaus($from,'free');
-        setStaus($to,'free');
+        setStatus($from, 'active');
+        setStatus($to, 'active');
         return;
     }
 
@@ -62,8 +73,8 @@ $ws_worker->onMessage = function (TcpConnection $tcp, $msg) use (&$connections, 
     if ($type == 'hangup') {
         destroyCall($from);
         destroyCall($to);
-        setStaus($from, 'free');
-        setStaus($to, 'free');
+        setStatus($from, 'active');
+        setStatus($to, 'active');
         $isCaller = $data['isCaller'] ?? null;
         if ($isCaller) {
             $recipent->send($msg);
@@ -80,13 +91,13 @@ $ws_worker->onMessage = function (TcpConnection $tcp, $msg) use (&$connections, 
 
     // offer
     if ($type === 'offer') {
-        if ($recipent && $recipentStatus == 'free') {
+        if ($recipent && $recipentStatus != 'busy') {
             $offers[$from] = $data;
             sendIncommings($to);
-            setStaus($from, 'busy');
-            setStaus($to, 'busy');
+            setStatus($from, 'busy');
+            setStatus($to, 'busy');
         } else {
-            $tcp->send(json_encode(['type' => 'error', 'to' => $from, 'error' => 'user is busy or is un-able to take calls currently !']));
+            $tcp->send(json_encode(['type' => 'error', 'to' => $from, 'error' => base64_decode($data['userId']) . " is unable to answer this call currently"]));
         }
         return;
     }
@@ -94,9 +105,6 @@ $ws_worker->onMessage = function (TcpConnection $tcp, $msg) use (&$connections, 
     // candidates
     if ($type === 'candidate') {
         $candidates[$from] = $data;
-        if ($recipent) {
-            sendCandidates($from, $recipent);
-        }
         return;
     }
 
@@ -135,6 +143,7 @@ function sendIncommings($userId)
 {
     global $offers, $connections;
     foreach ($offers as $offer) {
+
         $expiry = (int) $offer['expires'];
         if ($offer['to'] == $userId && time() < ($expiry / 1000)) {
             $data = $offer;
@@ -212,10 +221,38 @@ function destroyCall($userId)
     }
 }
 
-function setStaus($userId, $status)
+function setStatus($userId, $status)
 {
     global $connections;
     if (isset($connections[$userId])) {
         $connections[$userId]['status'] = $status;
+    }
+}
+
+function disconnectUser($tcp, $userId)
+{
+    if ($tcp) $tcp->close();
+    removeOffer($userId);
+    removeCandidates($userId);
+    removeAnswers($userId);
+    removeConnection($userId);
+}
+
+function updateStatus($userId, $status, $tcp = null)
+{
+    global $connections;
+    if ($status == 'disconnect') {
+        disconnectUser($tcp, $userId);
+        return;
+    }
+
+    if ($status == 'active') {
+        $connections[$userId]['connection'] = $tcp;
+        setStatus($userId, $status);
+        return;
+    }
+
+    if ($status == 'in-active') {
+        setStatus($userId, $status);
     }
 }
