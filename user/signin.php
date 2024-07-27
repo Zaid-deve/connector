@@ -1,7 +1,6 @@
 <?php
 
 require_once "../php/config.php";
-require_once "../db/conn.php";
 require_once "user.php";
 $user = new User();
 if ($user->isUserLogedIn()) {
@@ -22,6 +21,7 @@ require_once "../includes/head.php";
 
     <!-- BODY -->
     <?php
+    $hideRightHeader = true;
     include "../includes/loader.php";
     require_once "../includes/header.php";
     require_once "../includes/alert.php";
@@ -35,13 +35,13 @@ require_once "../includes/head.php";
                     <hr>
                     <div class="mt-4">
                         <div class="field field-email">
-                            <label for="__email">Email Address</label>
-                            <input type="text" class="form-control" id="__email" placeholder="example@mail.com">
+                            <label for="__email"><i class="ri-mail-fill"></i>&nbsp; Email Address</label>
+                            <input type="text" class="form-control" id="__email" placeholder="Enter Your Email Address">
                             <div class="err text-danger"></div>
                         </div>
                         <div class="field field-pass mt-3 d-none">
-                            <label for="__pass">Account Password</label>
-                            <input type="password" class="form-control" id="__pass" placeholder="Enter password">
+                            <label for="__pass"><i class="ri-key-fill"></i>&nbsp; Account Password</label>
+                            <input type="password" class="form-control" id="__pass" placeholder="Enter Your password">
                             <div class="err text-danger"></div>
                         </div>
                         <button class="btn w-100 py-2 mt-3 rounded-5" type="submit" id="submit" disabled>

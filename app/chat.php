@@ -113,8 +113,8 @@ require_once $root . "includes/head.php";
                             echo "</ul>";
                         } else {
                             echo "<div class='py-5 px-3 d-flex justify-content-center flex-column gap-4'>
-                                     <img src='../images/empty.png' class='img-contain d-block mx-auto' style='max-height:180px;'>
-                                     <small class='text-muted text-center'>add friends to quikly <br> make a video/audio call with them.</small>
+                                     <img src='../images/no-users.png' class='img-contain d-block mx-auto' style='max-height:140px;'>
+                                     <p class='text-center text-secondary'>Add friends and make <br> video and audio calls seamlesly.</p>
                                   </div>";
                         }
                         echo "</div>";
